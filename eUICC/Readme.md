@@ -4,7 +4,7 @@ The internal high-level architecture of the eUICC.
 The eUICC architecture is similar to that used in the GSMA Remote SIM Provisioning of Embedded UICC Technical specification.
 Profiles are provisioned based on the security framework defined in the GlobalPlatform Card Specification.
 
-[Schematic Representation of the eUICC](https://www.gsma.com/solutions-and-impact/technologies/esim/wp-content/uploads/2023/12/SGP.21-V3.1.pdf)
+[Schematic Representation of the eUICC](https://www.gsma.com/solutions-and-impact/technologies/esim/wp-content/uploads/2023/12/SGP.21-V3.1.pdf)  
 <img width="608" alt="Screenshot 2024-10-03 at 10 27 14 PM" src="https://github.com/user-attachments/assets/a7aede0b-8945-4bc1-945c-66c0d3139730">
 
 ## ECASD
