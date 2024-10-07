@@ -30,10 +30,10 @@ Two configurations of the SM-DS MAY exist:
 
 ## Implementation Guidelines:
 The following statements SHOULD be considered when defining a technical implementation:
-• A competitive environment on the supply of SM-DS services SHOULD be favoured by the approach.
-• There SHOULD be no single-points-of-failure.
-• Implementation SHOULD inherently provide both vertical and horizontal performance/scalability.
-• There SHOULD be no need for pre-registration of Devices or eUICCs at a certain SM-DS.
+- A competitive environment on the supply of SM-DS services SHOULD be favoured by the approach.
+- There SHOULD be no single-points-of-failure.
+- Implementation SHOULD inherently provide both vertical and horizontal performance/scalability.
+- There SHOULD be no need for pre-registration of Devices or eUICCs at a certain SM-DS.
 
 ## Functions
 
