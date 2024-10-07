@@ -7,6 +7,7 @@ The role of the SM-DS is to,
 
 The principle of operation remains the same for all use cases,  
 _**The SM-DP+ will send an Event Registration message for a target Device to an SM-DS.**_  
+
 In a simple deployment, only the Root SM-DS is configured on the eUICC.
 - The Root SM-DS address is unique and filled in the eUICC.
 - The LDS in the target Device polls the Root SM-DS using the same logical location.
