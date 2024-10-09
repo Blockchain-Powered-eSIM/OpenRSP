@@ -1,9 +1,18 @@
 # Open Source Remote SIM Provisioning
+
+_Breif on traditonal RSP,_
 ## Remote SIM Provisioning
 >
->Remote SIM provisioning is a specification realized by GSMA that allows consumers to remotely activate the subscriber identity module (SIM) embedded in a portable device such as a smart phone, smart watch, fitness band or tablet computer. The specification was originally part of the GSMA's work on eSIM[3] and it is important >to note that remote SIM provisioning is just one of the aspects that this eSIM specification includes.
+>Remote SIM provisioning is a specification realized by GSMA that allows consumers to remotely activate the subscriber identity module (SIM) embedded in a portable device such as a smart phone, smart watch, fitness band or tablet computer. The specification was originally part of the GSMA's work on eSIM and it is important to note that remote SIM provisioning is just one of the aspects that this eSIM specification includes.
 
-**[BELIEF]** _The problem with current RSP lies in trust, transparency, and automation in the process of remote SIM provisioning (RSP), which could potentially be solved using smart contracts and modern cryptography._
+#### GSMA
+>
+>The GSM Association (commonly referred to as 'the GSMA' or Global System for Mobile Communications, originally Groupe Spécial Mobile) is a non-profit industry organisation that represents the interests of mobile network operators worldwide. More than 750 mobile operators are full GSMA members and a further 400 companies in the broader mobile ecosystem are associate members.
+
+---
+
+## Problem
+The problem with current RSP lies in trust, transparency, and automation in the process of remote SIM provisioning (RSP), which could potentially be solved using smart contracts and modern cryptography._
 
 ### The challenges:
 1. **Trust Between Service Providers and Consumers**: Consumers must trust the remote provisioning process carried out by mobile operators or third-party service providers to be secure and private. Currently, this process requires reliance on intermediaries (like Subscription Managers) to manage SIM profiles and switch between mobile operators. This raises concerns about data security, privacy, and the handling of SIM profiles.
@@ -38,7 +47,34 @@ Through the use of the open source eSIM Smart Wallet, OpenRSP resolves key issue
 Built on the principles of secure-by-design, OpenRSP establishes a decentralized, transparent, and user-centric approach to mobile provisioning. It redefines how we view connectivity, empowering users to do more than just communicate while fostering a more open and secure telecom ecosystem.
 
 # RSP Architecture:
-!NOTICE: All the traditonal knowledge and new RnD is started from [RSP Architecture SGP.21 V3.1](https://www.gsma.com/solutions-and-impact/technologies/esim/wp-content/uploads/2023/12/SGP.21-V3.1.pdf). The interaction between components and inner working is represented by `ES`.
+**NOTICE**: All the traditonal knowledge and new RnD is started from [RSP Architecture SGP.21 V3.1](https://www.gsma.com/solutions-and-impact/technologies/esim/wp-content/uploads/2023/12/SGP.21-V3.1.pdf). The interaction between components and inner working is represented by `ES`.
+
+### Structure
+The SIM is now structured into "**domains**" that separate the operator profile from the security and application "**domains**".  
+
+**The concept of "domains" is a structural approach to segregate the functionalities and responsibilities within the SIM.** 
+>
+>In practise "eSIM upgrade" in the form of a normal SIM card is possible (using the Android 9 eSIM APIs) or eSIM can be included into an SOC.
+>The requirement of GSMA certification is that personalisation packet is decoded inside the chip and so there is no way to dump Ki, OPc and 5G keys.
+>Another important aspect is that the eSIM is owned by the enterprise[clarification needed]!,
+>and this means that the enterprise now has full control of the security and applications in the eSIM, and which operators profiles are to be used.
+
+## Domains in eSIM
+#### 1. Operator Profile Domain
+- This domain holds the traditional functionalities of a SIM, primarily related to network access. It contains information such as:
+  - **International Mobile Subscriber Identity (IMSI)**: The unique identifier for the subscriber on the mobile network.
+  - **Authentication Keys**: Used to authenticate the subscriber on the network and establish a secure connection.
+  - **Network-Specific Configurations**: Settings required by the Mobile Network Operator (MNO), such as preferred access technologies and roaming rules.
+- The **operator profile domain** is controlled and managed by the MNO. This domain ensures that the eSIM can establish and maintain connectivity with the mobile network.
+
+#### 2. Security Domain
+- The **security domain** is a dedicated area within the eSIM that manages sensitive cryptographic operations. This domain is responsible for:
+  - **eKYC (Electronic Know Your Customer)**: Ensures compliance with regulations like GDPR, AML, and AFT by verifying the identity of the subscriber.
+  - **Secure Key Storage**: Safeguards cryptographic keys, protecting them from unauthorized access.
+  - **Over-The-Air (OTA) Updates**: Enables the secure provisioning of new keys, certificates, or updates to the eSIM.
+  - **Secure Element**: A hardware-based security module that manages cryptographic operations, isolated from other domains to prevent unauthorized access.
+
+This domain-based architecture adds a layer of abstraction and security, allowing eSIMs to serve it purpose ensuring compliance with security and regulatory requirements.
 
 The current Remote SIM Provisioning Architecture,
 ![RSP-Architecture](https://github.com/user-attachments/assets/30bb39db-5c26-4c9c-b46e-1a01452525bf)
@@ -53,20 +89,24 @@ The current Remote SIM Provisioning Architecture,
 - Device App
 - LPA
 
-### Outbound Interactions
+### Principles
 
-- eUICC
-- LPA
-- USER
+All parties either implementing or operating systems based on these specifications should be aware that any data items passed between system elements that can be used to identify an individual can be classified as personal data (as defined in the General Data Protection Regulation (EU) 2016/679). Responsibility for the management of Personal Data and compliance with any necessary legislation lies with implementing and operating organisations, according to each organisation’s respective legal status with respect to the data processes (i.e. whether the entity acts as a data controller or as a data processor).
 
 ### High Level Authorized Parties
+>The requirement of GSMA certification is that personalisation packet is decoded inside the chip and so there is **no way to dump Ki, OPc and 5G keys.**
+>Another important aspect is that the **eSIM is owned by the enterprise**, and this means that the enterprise now has full control of the security and applications in the eSIM, and which operators profiles are to be used.
 
 - EUM
 - CI
 - OEM
 - Operator
 
+### Operations
+<img width="911" alt="Screenshot 2024-10-09 at 4 33 40 PM" src="https://github.com/user-attachments/assets/837164db-3ade-431b-a16f-53724a9b87b0">
+
 ---
+
 ### One approach for openRSP
 
 It includes modern authentication for eSIMs, ensuring their validity and enabling users to prove ownership of eSIM profiles to network providers without compromising their private credentials. One key aspect of our approach is the utilization of the eUICC unique identifier (EID) to create a Secure Identifier (SSID/ZKID/DID). The EID is inherently unique and tied to the device's hardware, serving as a robust form of two-factor security. By combining this hardware-backed identifier with “*something you know*" (e.g., user credentials) and "*something you are*" (e.g., biometric data), we can enhance privacy-focused encryption and authentication for outsourced data and industry-wide collaboration. Thinking about OpenRSP incorporating the secure identifier, an advanced framework that leverages state-of-the-art cryptographic techniques to address these challenges.
