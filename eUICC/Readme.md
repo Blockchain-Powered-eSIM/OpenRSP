@@ -36,7 +36,7 @@ The Issuer Security Domain - Profile or ISD-P is a secure containerised domain f
 ## MNO-SD
 The MNO-SD is the on-card representative of the Operator which issued the Profile. It contains the Operator’s Over-The-Air (OTA) Keys and provides a secure OTA channel.
 The primary component of a “Profile” is the MNO-SD, representing the network operator with their Over-The-Air (OTA) Keys and provides a secure OTA channel. Other components include configurations to support use of Network Access Applications (NAA), supplementary security domain (SSD), policy rules (POL1) and connectivity parameters.
-![Please contact repo maintainers to update images]["Profile Structure Overview"]
+![Please contact repo maintainers to update images](https://github.com/Blockchain-Powered-eSIM/OpenRSP/blob/main/assets/images/ISD-P_profileStructure.png "Profile Structure Overview")
 
 ## Profile Policy Enabler
 The eUICC Operating System (OS) service which offers Profile Policy Rules validation and enforcement.
@@ -60,7 +60,7 @@ The LPA services provide necessary access to the services and data required by t
 
 ## Interfaces
 There are several interface defined by the RSP specification which covers interactions between different system components of RSP. In this section only interfaces which involve eUICC and the device LPA are defined.
-General Interface Requirements are listed [here]().
+General Interface Requirements are listed [here](https://github.com/Blockchain-Powered-eSIM/OpenRSP/blob/main/Interfaces/Requirements.md).
 
 ## Complaiance
 Compliance with GSMA standards for eUICC manufacturing and operations is strictly required as per current implementation of RSP specifications. The compliance procedure for M2M and Consumer RSP solutions are different.
