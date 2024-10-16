@@ -1,6 +1,6 @@
 ## Interface Definitions
 
-![Please contact repo maintainers to update images]["Interfaces on eUICC Architecture with the LPA in Device Configuration"]
+![Please contact repo maintainers to update images](https://github.com/Blockchain-Powered-eSIM/OpenRSP/blob/main/assets/images/euiccInterfacesLPA_DeviceConfig.png "Interfaces on eUICC Architecture with the LPA in Device Configuration")
 Interfaces on eUICC Architecture with the LPA in Device Configuration.
 
 1. **ES2+ `{ Operator ←→ SM-DP+ }`**
