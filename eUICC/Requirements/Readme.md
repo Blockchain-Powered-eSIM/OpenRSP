@@ -68,9 +68,9 @@ EUICC57c : The Integrated eUICC Test Interface SHALL be compatible with commonly
 60. EUICC60 : The eUICC MAY provide a means by which the Profile Owner of an Enabled Profile can request the LPA to check for Events or pending RSP operations on the Polling Address configured in the Enabled Profile.
 61. EUICC61 : The eUICC SHALL support the ‘set/edit nickname’ function.
 62. EUICC62 : The eUICC SHALL support at least one eSIM CA for:
-- Profile binding
-- mutual authentication between eUICC and SM-DP+
-- mutual authentication between eUICC and SM-DS.
+    - Profile binding
+    - mutual authentication between eUICC and SM-DP+
+    - mutual authentication between eUICC and SM-DS.
 63. EUICC63 : An eUICC MAY support SM2, SM3 and SM4 cryptographic algorithms, for mutual authentication and data encryption between the SM-XX and eUICCs.
 Note: TLS is used between the LPA and the SM-XX and is not considered in this requirement.
 64. EUICC64 : A non-removable eUICC MAY support Multiple Enabled Profiles (MEP). 
@@ -79,6 +79,6 @@ NOTE: Support of Multiple Enabled Profiles on a removable eUICC is FFS.
 66. EUICC66 : An eUICC SHOULD support Interoperable Applications.
 67. EUICC67 : An eUICC implementing EUICC66 SHALL support an application runtime environment facilitating interoperability, e.g. Java Card. The application runtime environment(s) SHALL be explicitly indicated to the SM-DP+.
 68. EUICC68 :  The Enabled/Disabled state of a Profile SHALL remain unchanged when the eUICC undergoes the following operations outside of an ‘Enable Profile’ or ‘Disable Profile’ procedure:
-- Powering down or powering up the eUICC
-- Removing the eUICC from the Device
-- Inserting the eUICC in the Device (whether the same Device or a different Device)
+    - Powering down or powering up the eUICC
+    - Removing the eUICC from the Device
+    - Inserting the eUICC in the Device (whether the same Device or a different Device)

@@ -1,5 +1,8 @@
 ## Interface Definitions
 
+![Please contact repo maintainers to update images]["Interfaces on eUICC Architecture with the LPA in Device Configuration"]
+Interfaces on eUICC Architecture with the LPA in Device Configuration.
+
 1. **ES2+ `{ Operator ←→ SM-DP+ }`**
 The ES2+ interface is used by the Operator to order Profiles for specific eUICCs as well as other administrative functions.
 2. **ESeu `{ End User ←→ LUI }`**
