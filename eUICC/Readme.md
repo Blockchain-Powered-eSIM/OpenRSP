@@ -10,7 +10,7 @@ The eUICC security domain architecture comprises the following elements
 <img width="608" alt="Screenshot 2024-10-03 at 10 27 14 PM" src="https://github.com/user-attachments/assets/a7aede0b-8945-4bc1-945c-66c0d3139730">
 
 The eUICC (embedded Universal Integrated Circuit Card) is the core component of RSP protocol. The eUICC enables remote management and switching of mobile network operator profiles on devices without needing a physical SIM swap. It allows multiple profiles to be downloaded, activated, and managed over the air, providing flexibility for IoT devices, smartphones, and wearables. This simplifies connectivity across different networks, supports multi-operator use cases, and enhances efficiency for operators and users alike.
-The eUICC architecture has similarities to GSMA Remote SIM Provisioning of Embedded UICC Technical specification. Profiles are provisioned in SGP .21 compliant RSP systems based on the security framework defined in the GlobalPlatform Card Specification.
+The eUICC architecture has similarities to GSMA Remote SIM Provisioning of Embedded UICC Technical specification. Profiles are provisioned in `SGP .21` compliant RSP systems based on the security framework defined in the GlobalPlatform Card Specification.
 There are certain requirements for eUICC module laid out by GSMA describing behavior and supported functionality to the eUICC implementation be viable for RSP solution. These requirements are listed [here](https://github.com/Blockchain-Powered-eSIM/OpenRSP/tree/main/eUICC/Requirements).
 There are many sub-components of the eUICC module along with an Operating System which manages the interactions of eUICC to the device and RSP server components.
 
@@ -74,17 +74,17 @@ Compliance with GSMA standards for eUICC manufacturing and operations is strictl
 [Compliance](https://www.gsma.com/solutions-and-impact/technologies/esim/compliance/) with consumer solution requires verification of
 - eUICC security using the same mechanisms as M2M specification. Initial focus is on a [silicon-level protection file](https://www.commoncriteriaportal.org/files/ppfiles/pp0084a_pdf.pdf). GSMA has also publishes eUICC security measures principles and methodology in documents `SGP .06` and `.07`.
 - Production environment and process security is through SAS-UP or SAS-SM according to the consumer solution entity type.
-- Functional compliance for all consumer entities is maintained via functional test and certification programs based o GSMA specification SGP.23. These programmes have been established, in partnership with GSMA, by GlobalPlatform (for eUICC), Global Certification Forum and PTCRB (for Consumer solution devices).
+- Functional compliance for all consumer entities is maintained via functional test and certification programs based o GSMA specification `SGP.23`. These programmes have been established, in partnership with GSMA, by GlobalPlatform (for eUICC), Global Certification Forum and PTCRB (for Consumer solution devices).
 
-The GSMA PRD SGP.24 details the compliance requirements, and expected means to demonstrate compliance, for product designed to the eSIM specifications, SGP.22 and SGP.21. SGP.24 also provides declaration templates to be completed and submitted to GSMA once an eSIM product has proven its compliance by test and/or certification
+The GSMA PRD `SGP .24` details the compliance requirements, and expected means to demonstrate compliance, for product designed to the eSIM specifications, `SGP .22` and `SGP .21`. `SGP .24` also provides declaration templates to be completed and submitted to GSMA once an eSIM product has proven its compliance by test and/or certification
 
-The compliance requirements focus on security assurance, functionality and interoperability. The result of a successful SGP.24 declaration of compliance is a recognised achievement plus eligibility to use an eSIM Digital Certificate (PKI). This is used for authentication between eUICCs and eSIM Subscription Management servers (SM-DP+ and SM-DS).
+The compliance requirements focus on security assurance, functionality and interoperability. The result of a successful `SGP .24` declaration of compliance is a recognised achievement plus eligibility to use an eSIM Digital Certificate (PKI). This is used for authentication between eUICCs and eSIM Subscription Management servers (SM-DP+ and SM-DS).
 
 #### Security Assurance by design
-The eUICC IC/hardware platform requirement is [Common Criteria](https://www.commoncriteriaportal.org/) certification to the Security IC Platform Protection Profile with Augmentation Package Certification (PP-0084 or PP-0117). Certification to PP-0035 is also acceptable.
+The eUICC IC/hardware platform requirement is [Common Criteria](https://www.commoncriteriaportal.org/) certification to the Security IC Platform Protection Profile with Augmentation Package Certification (`PP-0084` or `PP-0117`). Certification to `PP-0035` is also acceptable.
 
-All GSMA eSIM compatible eUICCs that follow the industry GSMA eSIM Specifications (as defined in SGP.21 and SGP.22), have to prove robustness by complying with SGP .25. The permitted methodologies architecture
-- Common Criteria PP-0100 Certification report reference.
+All GSMA eSIM compatible eUICCs that follow the industry GSMA eSIM Specifications (as defined in `SGP .21` and `SGP .22`), have to prove robustness by complying with `SGP .25`. The permitted methodologies architecture
+- Common Criteria `PP-0100` Certification report reference.
 - GSMA eSA Certification reference (eUICC Security Accreditation Scheme)
 
 #### Security Assurance in production and SM service location
