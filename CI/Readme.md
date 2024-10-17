@@ -38,11 +38,15 @@ The Algorithm Identifiers of all certificates of a certificate chain SHALL point
 
 ## [X.509 Certificates](https://darutk.medium.com/illustrated-x-509-certificate-84aece2c5c2e)
 
+![](../assets/images/X509.png)
+
 - Mostly used in TLS (Transport Layer Security)
 
 - Allows all parties to access the details of a user’s X.509 certificate. Even normal users on a web browser can do so by clicking the padlock next to a page’s URL in the address bar.
 
 - 3 types of certificates: Root certificate, Intermediate certificate, and End-entity certificate.
+
+![](../assets/images/CertificateChain.png)
 
 Root certificate: 
 
@@ -64,6 +68,8 @@ End-entity certificate:
 
 
 ## [Chain of Trust](https://www.researchgate.net/publication/323692746_A_Blockchain-Based_PKI_Management_Framework)
+
+![](../assets/images/ChainOfTrust.png)
 
 - The system first examines the end-entity’s certificate.
 
