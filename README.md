@@ -43,6 +43,11 @@ This domain-based architecture adds a layer of abstraction and security, allowin
 ### Operations
 <img width="911" alt="Screenshot 2024-10-09 at 4 33 40 PM" src="https://github.com/user-attachments/assets/837164db-3ade-431b-a16f-53724a9b87b0">
 
+### X.509 Certificates and Chain of Trust
+The Chain of Trust in X.509 certificates is a hierarchical structure used to verify the authenticity of digital certificates.  
+It begins with a Root Certificate Authority (Root CA), which is inherently trusted and widely distributed in systems and browsers.  
+The Root CA issues and signs certificates for Intermediate Certificate Authorities (Intermediate CAs), which in turn issue certificates to End-Entities (Leaf Certificates), such as websites or users.  
+To establish trust, each certificate in the chain must be verified by the certificate above it, with the process starting from the end-entity’s certificate and moving up to the intermediate and root certificates. If any part of this chain is invalid, revoked, or tampered with, the entire chain is considered untrusted, which compromises the security of the system. Read more about Chain of Trust [here](./CI/Readme.md)
 
 
 ## Problem
