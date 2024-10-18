@@ -13,6 +13,42 @@ _Breif on traditonal RSP,_
 
 <img width="937" alt="Screenshot 2024-10-14 at 9 10 32 PM" src="https://github.com/user-attachments/assets/b8b69571-2d4e-4e80-850a-b5e867434349">
 
+### Structure
+The SIM is now structured into "**domains**" that separate the operator profile from the security and application "**domains**".  
+
+**The concept of "domains" is a structural approach to segregate the functionalities and responsibilities within the SIM.** 
+>
+>In practise "eSIM upgrade" in the form of a normal SIM card is possible (using the Android 9 eSIM APIs) or eSIM can be included into an SOC.
+>The requirement of GSMA certification is that personalisation packet is decoded inside the chip and so there is no way to dump Ki, OPc and 5G keys.
+>Another important aspect is that the eSIM is owned by the enterprise[clarification needed]!,
+>and this means that the enterprise now has full control of the security and applications in the eSIM, and which operators profiles are to be used.
+
+## Domains in eSIM
+#### 1. Operator Profile Domain
+- This domain holds the traditional functionalities of a SIM, primarily related to network access. It contains information such as:
+  - **International Mobile Subscriber Identity (IMSI)**: The unique identifier for the subscriber on the mobile network.
+  - **Authentication Keys**: Used to authenticate the subscriber on the network and establish a secure connection.
+  - **Network-Specific Configurations**: Settings required by the Mobile Network Operator (MNO), such as preferred access technologies and roaming rules.
+- The **operator profile domain** is controlled and managed by the MNO. This domain ensures that the eSIM can establish and maintain connectivity with the mobile network.
+
+#### 2. Security Domain
+- The **security domain** is a dedicated area within the eSIM that manages sensitive cryptographic operations. This domain is responsible for:
+  - **eKYC (Electronic Know Your Customer)**: Ensures compliance with regulations like GDPR, AML, and AFT by verifying the identity of the subscriber.
+  - **Secure Key Storage**: Safeguards cryptographic keys, protecting them from unauthorized access.
+  - **Over-The-Air (OTA) Updates**: Enables the secure provisioning of new keys, certificates, or updates to the eSIM.
+  - **Secure Element**: A hardware-based security module that manages cryptographic operations, isolated from other domains to prevent unauthorized access.
+
+This domain-based architecture adds a layer of abstraction and security, allowing eSIMs to serve it purpose ensuring compliance with security and regulatory requirements.
+
+### Operations
+<img width="911" alt="Screenshot 2024-10-09 at 4 33 40 PM" src="https://github.com/user-attachments/assets/837164db-3ade-431b-a16f-53724a9b87b0">
+
+### X.509 Certificates and Chain of Trust
+The Chain of Trust in X.509 certificates is a hierarchical structure used to verify the authenticity of digital certificates.  
+It begins with a Root Certificate Authority (Root CA), which is inherently trusted and widely distributed in systems and browsers.  
+The Root CA issues and signs certificates for Intermediate Certificate Authorities (Intermediate CAs), which in turn issue certificates to End-Entities (Leaf Certificates), such as websites or users.  
+To establish trust, each certificate in the chain must be verified by the certificate above it, with the process starting from the end-entity’s certificate and moving up to the intermediate and root certificates. If any part of this chain is invalid, revoked, or tampered with, the entire chain is considered untrusted, which compromises the security of the system. Read more about Chain of Trust [here](./CI/Readme.md)
+
 
 ## Problem
 _The problem with current RSP lies in trust, security, transparency, and automation in the process of remote SIM provisioning (RSP), which could potentially be solved using smart contracts and modern cryptography._
@@ -54,33 +90,6 @@ Built on the principles of secure-by-design, OpenRSP establishes a decentralized
 # RSP Architecture:
 **NOTICE**: All the traditonal knowledge and new RnD is started from [RSP Architecture SGP.21 V3.1](https://www.gsma.com/solutions-and-impact/technologies/esim/wp-content/uploads/2023/12/SGP.21-V3.1.pdf). The interaction between components and inner working is represented by `ES`.
 
-### Structure
-The SIM is now structured into "**domains**" that separate the operator profile from the security and application "**domains**".  
-
-**The concept of "domains" is a structural approach to segregate the functionalities and responsibilities within the SIM.** 
->
->In practise "eSIM upgrade" in the form of a normal SIM card is possible (using the Android 9 eSIM APIs) or eSIM can be included into an SOC.
->The requirement of GSMA certification is that personalisation packet is decoded inside the chip and so there is no way to dump Ki, OPc and 5G keys.
->Another important aspect is that the eSIM is owned by the enterprise[clarification needed]!,
->and this means that the enterprise now has full control of the security and applications in the eSIM, and which operators profiles are to be used.
-
-## Domains in eSIM
-#### 1. Operator Profile Domain
-- This domain holds the traditional functionalities of a SIM, primarily related to network access. It contains information such as:
-  - **International Mobile Subscriber Identity (IMSI)**: The unique identifier for the subscriber on the mobile network.
-  - **Authentication Keys**: Used to authenticate the subscriber on the network and establish a secure connection.
-  - **Network-Specific Configurations**: Settings required by the Mobile Network Operator (MNO), such as preferred access technologies and roaming rules.
-- The **operator profile domain** is controlled and managed by the MNO. This domain ensures that the eSIM can establish and maintain connectivity with the mobile network.
-
-#### 2. Security Domain
-- The **security domain** is a dedicated area within the eSIM that manages sensitive cryptographic operations. This domain is responsible for:
-  - **eKYC (Electronic Know Your Customer)**: Ensures compliance with regulations like GDPR, AML, and AFT by verifying the identity of the subscriber.
-  - **Secure Key Storage**: Safeguards cryptographic keys, protecting them from unauthorized access.
-  - **Over-The-Air (OTA) Updates**: Enables the secure provisioning of new keys, certificates, or updates to the eSIM.
-  - **Secure Element**: A hardware-based security module that manages cryptographic operations, isolated from other domains to prevent unauthorized access.
-
-This domain-based architecture adds a layer of abstraction and security, allowing eSIMs to serve it purpose ensuring compliance with security and regulatory requirements.
-
 The current Remote SIM Provisioning Architecture,
 ![RSP-Architecture](https://github.com/user-attachments/assets/30bb39db-5c26-4c9c-b46e-1a01452525bf)
 
@@ -106,10 +115,6 @@ All parties either implementing or operating systems based on these specificatio
 - CI
 - OEM
 - Operator
-
-### Operations
-<img width="911" alt="Screenshot 2024-10-09 at 4 33 40 PM" src="https://github.com/user-attachments/assets/837164db-3ade-431b-a16f-53724a9b87b0">
-
 ---
 
 ### One approach for openRSP
