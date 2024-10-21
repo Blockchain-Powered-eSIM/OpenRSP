@@ -1,3 +1,5 @@
+# eUICC Requiremets
+
 1. EUICC1 : The eUICC SHALL be a discrete or integrated tamper resistant component consisting of hardware and software, capable of securely hosting applications as well as confidential and cryptographic data.
 Note: Wherever a distinction is required, the former is referred to as Discrete eUICC, and the latter as Integrated eUICC.
 2. EUICC2 : A removable eUICC is packaged in a standardised ETSI Form Factor.
