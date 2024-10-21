@@ -19,12 +19,10 @@ There are also some API requirements for LPA Access Control. There is also the p
 
 When there is an LPA in both the Device and eUICC, then LPA to be used is specified by Device settings. The schematic for LPA in both modes is given below
 
-![LPA in the eUICC](../assets/images/LPA_eUICC.png "LPA in eUICC Configuration")
-
+![LPA in the eUICC](../assets/images/LPA_eUICC.png "LPA in eUICC Configuration")  
 LPA in the eUICC
 
-![LPA in the Device](../assets/images/LPA_Device.png "LPA in Device Configuration")
-
+![LPA in the Device](../assets/images/LPA_Device.png "LPA in Device Configuration")  
 LPA in the Device
 
 # LPA PRoxy (LPR)
@@ -49,8 +47,7 @@ There are three methods by which a connection request from the LPA to the Profil
 - An RPM command sent from the SM-DP+ to the LPA
 - Specific API command issued from a Device Application to the LPA
 
-![LPA Proxy Procedure](../assets/images/LPR_Procedure.png "LPA Proxy Procedure")
-
+![LPA Proxy Procedure](../assets/images/LPR_Procedure.png "LPA Proxy Procedure")  
 LPA Proxy Procedure
 
 **Start Conditions:**
@@ -123,8 +120,7 @@ adequate platform identifier in the TLS Certificate used for the TLS session.
 
 LPA Proxy can also use Notifications to interact with specific Device Applications. These notifications can be used to inform End User of update progress of Profile Management session.
 
-![Device Application Interaction with LPA Proxy](../assets/images/LPR_Notification_Procedure.png "Device Application Interaction with LPA Proxy")
-
+![Device Application Interaction with LPA Proxy](../assets/images/LPR_Notification_Procedure.png "Device Application Interaction with LPA Proxy")  
 Device Application Interaction with LPA Proxy
 
 **Start Conditions:**

@@ -30,7 +30,7 @@ Two configurations of the SM-DS MAY exist:
 > **The Root SM-DS is configured at the time of Device manufacture and is invariant.**
 
 ![SM-DS Implementation](../assets/images/SM-DS_implementation.png "SM-DS Implementation")  
-[SM-DS Implementation]
+SM-DS Implementation
 
 ## Implementation Guidelines:
 The following statements SHOULD be considered when defining a technical implementation:
@@ -55,7 +55,7 @@ The procedure steps for Event Registration/Deletion in the figure below
 ![SM-DS Event Registration-Deletion](../assets/images/SM-DS_Event_regDel.png "SM-DS Event Registration and Deletion Procedure")  
 SM-DS Event Registration and Deletion Procedure
 
-**Starting Condition:**  
+**Starting Condition:**   
 a. The SM-DP+ has an Event Registration action waiting for a target eUICC identified by the EID.  
 
 #### Procedure: 
@@ -70,7 +70,7 @@ a. The SM-DP+ has an Event Registration action waiting for a target eUICC identi
 
 ### Event Deletion Procedure:
 
-**Starting Condition**
+**Starting Condition**  
 a. The SM-DP+ has an Event Deletion action waiting for a target eUICC identified by the EID.
 
 #### Procedure: 
