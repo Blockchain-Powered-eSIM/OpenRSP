@@ -34,8 +34,7 @@ The ISD-R is responsible for the creation of new ISD-Ps and the lifecycle manage
 The Issuer Security Domain - Profile or ISD-P is a secure containerised domain for hosting a Profile. The ISD-P is created by ISD-R using Profile Package Interpreter (part of eUICC OS) for decoding of the received Bound Profile Package. ISD-P represents the on-card equivalent of SM-DP+.
 
 ## MNO-SD
-The MNO-SD is the on-card representative of the Operator which issued the Profile. It contains the Operator’s Over-The-Air (OTA) Keys and provides a secure OTA channel.
-The primary component of a “Profile” is the MNO-SD, representing the network operator with their Over-The-Air (OTA) Keys and provides a secure OTA channel. Other components include configurations to support use of Network Access Applications (NAA), supplementary security domain (SSD), policy rules (POL1) and connectivity parameters.
+The MNO-SD is the on-card representative of the Operator which issued the Profile. The primary component of a “Profile” is the MNO-SD, representing the network operator with their Over-The-Air (OTA) Keys and provides a secure OTA channel. Other components include configurations to support use of Network Access Applications (NAA), supplementary security domain (SSD), policy rules (POL1) and connectivity parameters.
 ![Please contact repo maintainers to update images](https://github.com/Blockchain-Powered-eSIM/OpenRSP/blob/main/assets/images/ISD-P_profileStructure.png "Profile Structure Overview")
 
 ## Profile Policy Enabler
@@ -62,7 +61,23 @@ The LPA services provide necessary access to the services and data required by t
 There are several interface defined by the RSP specification which covers interactions between different system components of RSP. In this section only interfaces which involve eUICC and the device LPA are defined.
 General Interface Requirements are listed [here](https://github.com/Blockchain-Powered-eSIM/OpenRSP/blob/main/Interfaces/Requirements.md).
 
-## Complaiance
+### eUICC OS Update
+
+If the eUICC supports mechanisms to allow for OS updates then the Device need to be notified of certain information such that OS update can be properly scheduled with appropriate measures to handle eUICC services.
+
+To facilitate the eUICC OS update with End User interaction management the following information is required
+
+- The Device should know
+    - If there is an eUICC update available
+    - Which supplier is providing the eUICC update
+- Before the update is applied, the Device needs to know if the update will impact eUICC services and if there would be eUICC reboot sequences needed.
+- There should be a confirmation along with a status which indicates to the Device if the eUICC update finished and was it successful or not.
+
+All of this information is provided to the eUICC OS Manager over the **ESoem** interface.
+
+Requirements for eUICC OS updates can be referenced [here](./Requirements/eUICC_OSUpdate.md).
+
+## Compliance
 Compliance with GSMA standards for eUICC manufacturing and operations is strictly required as per current implementation of RSP specifications. The compliance procedure for M2M and Consumer RSP solutions are different.
 
 > OpenRSP's primary focus is the consumer RSP solution.
