@@ -1,6 +1,3 @@
-# Open Source Remote SIM Provisioning
-
-_Breif on traditonal RSP,_
 ## Remote SIM Provisioning
 >
 >Remote SIM provisioning is a specification realized by GSMA that allows consumers to remotely activate the subscriber identity module (SIM) embedded in a portable device such as a smart phone, smart watch, fitness band or tablet computer. The specification was originally part of the GSMA's work on eSIM and it is important to note that remote SIM provisioning is just one of the aspects that this eSIM specification includes.
@@ -81,11 +78,6 @@ _The problem with current RSP lies in trust, security, transparency, and automat
 
 #### Where eSIM Smart Wallet allows users to own their profiles and remove the requirements to store profiles in data centres.
 ---
-# Abstract
-OpenRSP, an Open Source Remote SIM Provisioning protocol, represents a new era in mobile connectivity, addressing the limitations of traditional systems while ensuring robust security, privacy, and user ownership. As the world becomes increasingly connected through telecom and data networks, the reliance on secure communication protocols is paramount. Cryptography plays a vital role in solving fundamental issues related to privacy, security, integrity, and authenticity, which form the foundation of modern digital infrastructure. Current RSP standards are dependent on trusted third parties, where device manufacturers and mobile network operators (MNOs) control the provisioning of eSIM profiles, limiting consumer ownership and flexibility. Security in these systems hinges on the exchange of keys and certificates between devices and MNOs, leading to a restricted and closed environment that lacks transparency and user empowerment.
-OpenRSP leverages modern cryptographic protocols and integrates smart contract technology to introduce a trustless system, removing reliance on traditional trusted parties. By decentralizing the control over eSIM profiles and allowing consumers to own and manage their profiles independently, OpenRSP empowers users in ways previously unexplored in the telecom industry. This innovative approach not only enhances security but also promotes greater transparency and consumer rights.
-Through the use of the open source eSIM Smart Wallet, OpenRSP resolves key issues inherent in the current RSP stack. It removes the need for profiles to be stored in centralized data centers and enables independent service providers to load profiles directly onto devices. This shift enhances user control, ensuring that consumers have full ownership of their digital identity and profiles.
-Built on the principles of secure-by-design, OpenRSP establishes a decentralized, transparent, and user-centric approach to mobile provisioning. It redefines how we view connectivity, empowering users to do more than just communicate while fostering a more open and secure telecom ecosystem.
 
 # RSP Architecture:
 **NOTICE**: All the traditonal knowledge and new RnD is started from [RSP Architecture SGP.21 V3.1](https://www.gsma.com/solutions-and-impact/technologies/esim/wp-content/uploads/2023/12/SGP.21-V3.1.pdf). The interaction between components and inner working is represented by `ES`.
@@ -117,7 +109,43 @@ All parties either implementing or operating systems based on these specificatio
 - Operator
 ---
 
-### One approach for openRSP
+# Open Source Remote SIM Provisioning (OpenRSP)
+## Abstract
+OpenRSP, an Open Source Remote SIM Provisioning protocol, represents a new era in mobile connectivity, addressing the limitations of traditional systems while ensuring robust security, privacy, and user ownership. As the world becomes increasingly connected through telecom and data networks, the reliance on secure communication protocols is paramount. Cryptography plays a vital role in solving fundamental issues related to privacy, security, integrity, and authenticity, which form the foundation of modern digital infrastructure. As a protocol, RSP is continuosly evolvolving and it'll be the same until consumers have full ownership. Current RSP standards are dependent on central authority for trust, where device manufacturers and mobile network operators (MNOs) control the provisioning of eSIM profiles and by-design the ownership of consumer eSIM profile is held by Operators. Security is derived by exchange of keys and certificates between devices and MNOs, leading to a restricted and closed environment that lacks transparency and user empowerment. Authentications within the server reveals sensitive information and complexity can be improved by improving the design.
+OpenRSP leverages modern cryptographic protocols and integrates smart contract technology to introduce a trustless system, removing reliance on traditional trusted parties. By decentralizing the control over eSIM profiles and allowing consumers to own and manage their profiles independently, OpenRSP empowers users in ways previously unexplored in the telecom industry. This innovative approach not only enhances security but also promotes greater transparency and consumer rights.
+Through the use of the open source eSIM Smart Wallet, OpenRSP resolves key issues inherent in the current RSP stack. It removes the need for profiles to be stored in centralized data centers and enables independent service providers to load profiles directly onto devices. This shift enhances user control, ensuring that consumers have full ownership of their digital identity and profiles.
+Built on the principles of secure-by-design, OpenRSP establishes a decentralized, transparent, and user-centric approach to mobile provisioning. It redefines how we view connectivity, empowering users to do more than just communicate while fostering a more open and secure telecom ecosystem.
+---
+
+## Zero Knowledge Proving System (ZKPs)
+Zero Knowledge Proofs and Proving Systems is a groundbreaking tool to achieve goals for modern digital world.
+In the world of sharing, exposure or leakage of information, ZKP provides a protocol where prover share nothing but the proof that he holds the right information to follow the respective protocol and verifier verifies accordignly. Have a loot at this:
+
+- **Can you prove you followed the protocol *without releasing the factorisation?***
+- **Can you prove a number is quadratic residue *without showing the square root?***
+- **Can you prove a number is quadratic residue *revealing nothing except for that?***
+of-course you need to define what it means not to reveal anything else.
+
+**These question leads to the birth of first Zero Knowledge Proof(by a different name).**
+
+### Using ZKP in RSP
+
+1. Certificate Authentication without Revealing the Certificate Contents
+2. ZKP for EID Privacy
+3. ZKP for Profile Binding and SM-DP+ Authentication
+4. ZKP for Secure TLS Communication
+5. ZKP for Chain of Trust Verification
+6. ZKP-based Chain of Trust Validation:
+6. ZKP for Revocation Checking
+
+
+## Directions to achieve
+
+### Trust Distribution(Same setup)
+
+
+
+### More Privacy(Different setup)
 
 It includes modern authentication for eSIMs, ensuring their validity and enabling users to prove ownership of eSIM profiles to network providers without compromising their private credentials. One key aspect of our approach is the utilization of the eUICC unique identifier (EID) to create a Secure Identifier (SSID/ZKID/DID). The EID is inherently unique and tied to the device's hardware, serving as a robust form of two-factor security. By combining this hardware-backed identifier with “*something you know*" (e.g., user credentials) and "*something you are*" (e.g., biometric data), we can enhance privacy-focused encryption and authentication for outsourced data and industry-wide collaboration. Thinking about OpenRSP incorporating the secure identifier, an advanced framework that leverages state-of-the-art cryptographic techniques to address these challenges.
 
