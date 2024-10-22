@@ -116,9 +116,33 @@ OpenRSP leverages modern cryptographic protocols and integrates smart contract t
 Through the use of the open source eSIM Smart Wallet, OpenRSP resolves key issues inherent in the current RSP stack. It removes the need for profiles to be stored in centralized data centers and enables independent service providers to load profiles directly onto devices. This shift enhances user control, ensuring that consumers have full ownership of their digital identity and profiles.
 Built on the principles of secure-by-design, OpenRSP establishes a decentralized, transparent, and user-centric approach to mobile provisioning. It redefines how we view connectivity, empowering users to do more than just communicate while fostering a more open and secure telecom ecosystem.
 ---
+
+## Zero Knowledge Proving System (ZKPs)
+Zero Knowledge Proofs and Proving Systems is a groundbreaking tool to achieve goals for modern digital world.
+In the world of sharing, exposure or leakage of information, ZKP provides a protocol where prover share nothing but the proof that he holds the right information to follow the respective protocol and verifier verifies accordignly. Have a loot at this:
+
+- **Can you prove you followed the protocol *without releasing the factorisation?***
+- **Can you prove a number is quadratic residue *without showing the square root?***
+- **Can you prove a number is quadratic residue *revealing nothing except for that?***
+of-course you need to define what it means not to reveal anything else.
+
+**These question leads to the birth of first Zero Knowledge Proof(by a different name).**
+
+### Using ZKP in RSP
+
+1. Certificate Authentication without Revealing the Certificate Contents
+2. ZKP for EID Privacy
+3. ZKP for Profile Binding and SM-DP+ Authentication
+4. ZKP for Secure TLS Communication
+5. ZKP for Chain of Trust Verification
+6. ZKP-based Chain of Trust Validation:
+6. ZKP for Revocation Checking
+
+
 ## Directions to achieve
 
 ### Trust Distribution(Same setup)
+
 
 
 ### More Privacy(Different setup)
