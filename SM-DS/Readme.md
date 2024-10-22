@@ -24,11 +24,13 @@ In a deployment with cascaded SM-DSs, the SM-DP+ will send an Event Registration
 
 ## Implementation
 Two configurations of the SM-DS MAY exist:
-• A Root SM-DS
-• An Alternative SM-DS
+ - A Root SM-DS
+ - An Alternative SM-DS
 
-**The Root SM-DS is configured at the time of Device manufacture and is invariant.**
-<img width="595" alt="Screenshot 2024-10-07 at 4 09 07 PM" src="https://github.com/user-attachments/assets/ab654526-2c00-4ab4-bc1e-6ca7f2f1de37">
+> **The Root SM-DS is configured at the time of Device manufacture and is invariant.**
+
+![SM-DS Implementation](../assets/images/SM-DS_implementation.png "SM-DS Implementation")  
+SM-DS Implementation
 
 ## Implementation Guidelines:
 The following statements SHOULD be considered when defining a technical implementation:
@@ -38,67 +40,67 @@ The following statements SHOULD be considered when defining a technical implemen
 - There SHOULD be no need for pre-registration of Devices or eUICCs at a certain SM-DS.
 
 ## Functions
+The SM-DS supports mainly four functions which are described as
 
-### Event Registration 
-Process by which an Event Record received from an SM-DP+ is stored.
-
-### Event Deletion
-Process by which an SM-DP+ can delete its own Event Record.
-
-### Event Checking
-Provides the presence of registered Event Records, upon Event Checking request from any enquiring LDS.
-
-### Event Retrieval
-Provides all registered Event Records, upon Discovery Request from any enquiring LDS.
-
-## Event Registration/Deletion Procedure
-The procedure for a deployment with the Root SM-DS and an Alternative SM-DS (cascade mode).
-
-<img width="600" alt="Screenshot 2024-10-07 at 4 19 55 PM" src="https://github.com/user-attachments/assets/04cecc7c-5f19-45e0-a411-40fbfcef7ea8">
+| Function Name | Description |
+| --- | --- |
+| Event Registration | This function allows SM-DS to store an Event Record received from an SM-DP+ server. |
+| Event Deletion | This function allows an SM-DP+ to delete it’s own Event Record registered in the SM-DS server. |
+| Event Checking | This function provides the presence of any Event Records upon an Event Checking request from any enquiring LDS. |
+| Event Retrieval | This function provides all registered Event Records for any LDS sending a Discovery Request |
 
 ### Event Registration Procedure  
 
-**Starting Condition:**  
+The procedure steps for Event Registration/Deletion in the figure below  
+![SM-DS Event Registration-Deletion](../assets/images/SM-DS_Event_regDel.png "SM-DS Event Registration and Deletion Procedure")  
+SM-DS Event Registration and Deletion Procedure
+
+**Starting Condition:**   
 a. The SM-DP+ has an Event Registration action waiting for a target eUICC identified by the EID.  
 
-#### Procedure:  
-1. The SM-DP+ establishes a secure connection to an Alternative SM-DS of the Profile Owner´s choice.
-2. The SM-DP+ notifies the Alternative SM-DS about an Event Registration action.
-3. to 4. The Alternative SM-DS registers and confirms the Event Registration.
-5. The Alternative SM-DS establishes a secure connection to the Root SM-DS.
-6. The Alternative SM-DS informs the Root SM-DS that for the given EID, an Event Record is waiting at the Alternative SM-DS.
-7. The Root SM-DS registers the Event Registration.
-8. The Root SM-DS confirms the receipt of the information.
+#### Procedure: 
+1. The SM-DP+ sets up a secure connection to an Alternative/Root SM-DS server as per configured by Profile Owner.
+2. After the connection is set up the SM-DP+ sends a notification the the alternative SM-DS about Event Registration action.
+3. The SM-DS registers the event as per the details sent by SM-DP+.
+4. SM-DS sends a confirmation to requesting SM-DP+.
+5. (Only needed if an Alternative SM-DS was used in Step 2) The Alternative SM-DS sets up a secure connection to the Root SM-DS.
+6. The event is forwarded by Alternative SM-DS to the Root SM-DS as recorded.
+7. The Root SM-DS registers the event as received.
+8. Root SM-DS confirms the Event Registration to Alternative SM-DS.
 
 ### Event Deletion Procedure:
 
-**Starting Condition**
+**Starting Condition**  
 a. The SM-DP+ has an Event Deletion action waiting for a target eUICC identified by the EID.
 
-#### Procedure:  
-1. The SM-DP+ establishes a secure connection to an Alternative SM-DS of the Profile Owner´s choice.
-2. The SM-DP+ notifies the Alternative SM-DS about an Event Deletion action.
-3. to 4. The Alternative SM-DS deletes the Event Record and confirms the Event Deletion.
-5. The Alternative SM-DS establishes a secure connection to the Root SM-DS.
-6. The Alternative SM-DS informs the Root SM-DS that for the given EID, an Event Record has to be deleted.
+#### Procedure: 
+1. The SM-DP+ sets up a secure connection to an Alternative/Root SM-DS server as per configured by Profile Owner.
+2. After the connection is set up the SM-DP+ sends a notification the the alternative SM-DS about Event Deletion action.
+3. The SM-DS deletes the event as per the details sent by SM-DP+.
+4. SM-DS sends a confirmation to requesting SM-DP+.
+5. (Only needed if an Alternative SM-DS was used in Step 2) The Alternative SM-DS sets up a secure connection to the Root SM-DS.
+6. The Alternative SM-DS notifies Root SM-DS that an Event Record was deleted for the given EID.
 7. The Root SM-DS deletes the Event Record.
-8. The Root SM-DS confirms the deletion of the Event Record.
+8. Root SM-DS confirms the Event Deletion to Alternative SM-DS.
 
 ## Discovery Request Procedure  
 The procedure for a deployment with an Alternative SM-DS and the Root SM-DS (cascade mode).
+![SM-DS Event Discovery](../assets/images/SM-DS_event_discovery.png "SM-DS Event Registration Procedure")  
+SM-DS Event Registration Procedure
 
-<img width="616" alt="Screenshot 2024-10-07 at 4 26 19 PM" src="https://github.com/user-attachments/assets/c3ec989a-ce56-42eb-8bc4-de1abb0665eb">
-
-### Procedure:
-
-1. to 3. In order to generate a Discovery Request, the LDS requests the eUICC to generate its Authentication information which contains (at least) the eUICC-Certificate and is signed by the eUICC.
-4. to 5. The LDS establishes a secure communication to the Root SM-DS.
-6. The Root SM-DS verifies the authenticity of the eUICC by checking the eUICC Authentication information.
-7. If the eUICC is authentic and an Event Record is waiting, the Root SM-DS delivers back:
-    - **Option a**: The address of the SM-DP+ where an action is waiting.
-    - **Option b**: The rest of the following actions:
-        1. The address of the Alternative SM-DS, where an Event Record can be retrieved.
-        2. The LDS establishes a secure connection to the Alternative SM-DS.
-        3. The Alternative SM-DS verifies the authenticity of the eUICC by checking the eUICC Authentication information.
-        4. If the eUICC is authentic and an Event Record has been received, the Alternative SM-DS delivers back the address of the SM-DP+ where an action is waiting.
-8. The LPA establishes a connection to the SM-DP+ and the waiting action can be performed.
+### Procedure:  
+1. The LDS requests eUICC to generate authentication information in order to initiate a Root SM-DS discovery request.
+2. The eUICC, using it’s private key and other credentials generates the authentication information requested by LDS, which contains (at least) the eUICC-Certificate signed by the eUICC.
+3. Authentication information is sent from eUICC to the LDS along with the Root SM-DS address.
+4. LDS establishes a secure connection to the Root SM-DS address provided.
+5. LDS requests the Root SM-DS for retrieval of pending Event Records for target eUICC.
+6. The Root SM-DS verifies eUICC authentication information received from LDS.
+7. IF eUICC authentication information checks out and pending Event Records are found, the Root SM-DS responds with:
+    1. The SM-DP+ address where the Event action is pending
+    or (in case of an Alternative SM-DS)
+    2. These actions follow:
+        1. Alternative SM-DS address where Event Records are registered.
+        2. LDS establishes a secure connection with Alternative SM-DS address provided.
+        3. Alternative SM-DS verifies eUICC authentication information received
+        4. If eUICC is authentic and there are pending Event Records, Alternative SM-DS responds back with SM-DP+ address where the actions are pending.
+8. LPA establishes a secure connection to SM-DP+ address provided and the pending action can be executed.
