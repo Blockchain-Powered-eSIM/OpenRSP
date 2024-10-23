@@ -143,7 +143,12 @@ of-course you need to define what it means not to reveal anything else.
 
 ### Trust Distribution(Same setup)
 
-[](assets/images/OpenRSP_CI_ZKP_Solution.png)
+![Proving X.509 certificates with ZKP](assets/images/OpenRSP_CI_ZKP_Solution.png)
+
+While the GSMA holds the authority to issue the X.509 certificates, and the intermediate CAs issue it to the intermediates/end-entity below them in hierarchy, the end-entities need to Trust the Proof chain and they are pretty much clueless about the authenticity of the X.509 certificates held by their "higher-ups" in the chain until each certificate has been verified every time. These certificates act as the proof of authority of the CA and, the X.509 certificate itself is shared between the various entites participating in the RSP and these certificates contain various private/sensitive data.  
+The solution aims to remove the trust from the GSMA CI to the ZKP Verifier (which verifies the authenticity of the X.509 certificate and the verifier is publicly available on-chain ready to be verified by anyone) and each entity creates their own ZKP proof for their certificate. This allows the protocol to authenticate the participants without revealing their X.509 certificates, or any sensitive data in the certificates.  
+A central registry will record the proofs on-chain and these proofs might be used to prove the authenticity of an existing certificate (until a certain time perios) without having the need to generate a new proof for every interaction happening between the same set of entities in a given span of time.  
+> The idea is still under development and there might be significant changes in future.
 
 ### More Privacy(Different setup)
 
