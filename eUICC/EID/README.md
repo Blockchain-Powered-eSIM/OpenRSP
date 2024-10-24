@@ -10,8 +10,7 @@ The ICCID is defined by [ITU-T E.118](https://www.itu.int/rec/T-REC-E.118-200605
 
 The length of EID is fixed at 32 digits. The composition for a compliant EID is given below
 
-![EID Structure]()
-
+![EID Structure](./../../assets/images/EID_Structure.png "EID Structure")  
 EID Structure
 
 Breaking down each component of EID Structure
@@ -56,9 +55,8 @@ to it, except in the justified exceptions
 
 ### ERHI1 Assignment Process
 
-![ERHI Level1 Assignment]()
-
-ERHI Level1 Assignment
+![ERHI Level1 Assignment](./../../assets/images/ERHI1_assignment.png "ERHI Level 1 Assignment Process")  
+ERHI Level 1 Assignment
 
 The Process is defined by GSMA as follows:
 
@@ -73,8 +71,7 @@ On the basis of Verification result in Step 3, GSMA assigns the ERHI1
 
 ### ERHI1 Cancellation Process
 
-![ERHI1 Cancellation]()
-
+![ERHI1 Cancellation](./../../assets/images/ERHI1_cancellation.png "ERHI1 Cancellation Process")  
 ERHI1 Cancellation
 
 In addition to the EIN Assignment Process, an ERHI1 that is no longer used by a company
