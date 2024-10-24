@@ -108,6 +108,7 @@ All parties either implementing or operating systems based on these specificatio
 - OEM
 - Operator
 
+---
 ### eUICC Identifier (EID)
 
 The eUICC Identifier (EID) is a globally unique serial number assigned to eUICCs, distinct from service-related identifiers like subscriptions. Initially, its format was derived from the Integrated Circuit Card Identifier (ICCID), with specific fields from the ICCID embedded within the EID structure. Unlike the ICCID, which is defined as a Primary Account Number (PAN) for services (as per [ITU-T E.118](https://www.itu.int/rec/T-REC-E.118-200605-I/en)), the EID is not intended for charging purposes. The assignment of IINs/ICCIDs varies by country, leading to challenges for manufacturers, including obtaining EIDs in some cases.
@@ -133,7 +134,7 @@ EID Structure
 - Two check digits are calculated by the EUM for the full 32-digit EID. These check digits are derived by calculating the modulo 97 of the EID and subtracting the result from 98.
 - If the result is only one digit, a zero is prefixed to make two digits.
 
-EIDs can be verified by performing a modulo 97 operation. If the result is 1, the EID is valid.
+> **EIDs can be verified by performing a modulo 97 operation. If the result is 1, the EID is valid.**
 
 #### ERHI Assignment and Examples
 

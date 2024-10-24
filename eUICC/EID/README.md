@@ -10,7 +10,7 @@ The ICCID is defined by [ITU-T E.118](https://www.itu.int/rec/T-REC-E.118-200605
 
 The length of EID is fixed at 32 digits. The composition for a compliant EID is given below
 
-![EID Structure](../../../assets/images/EID_Structure.png)
+![EID Structure](./../../../assets/images/EID_Structure.png)
 
 EID Structure
 
@@ -40,7 +40,7 @@ Breaking down each component of EID Structure
     - Using the resulting 32 digit EID (decimal integer), compute modulo 97
     - Subtract the resulting modulo value from 98 and use the resulting value as heck digits (if result is only one digit then pad it by prefixing 0 as first check digit)
 
-EIDs can be verified using it as a 32 digit decimal integer and performing modulo 97 for it. If the result is 1 then the EID is valid, otherwise the verification fails.
+> **EIDs can be verified using it as a 32 digit decimal integer and performing modulo 97 for it. If the result is 1 then the EID is valid, otherwise the verification fails.**
 
 ## Criteria for ERHI1 Assignment
 
@@ -56,7 +56,7 @@ to it, except in the justified exceptions
 
 ### ERHI1 Assignment Process
 
-![ERHI Level1 Assignment](../../../assets/images/ERHI1_assignment.png)
+![ERHI Level1 Assignment](./../../../assets/images/ERHI1_assignment.png)
 
 ERHI Level1 Assignment
 
@@ -73,7 +73,7 @@ On the basis of Verification result in Step 3, GSMA assigns the ERHI1
 
 ### ERHI1 Cancellation Process
 
-![ERHI1 Cancellation](../../../assets/images/ERHI1_cancellation.png)
+![ERHI1 Cancellation](./../../../assets/images/ERHI1_cancellation.png)
 
 ERHI1 Cancellation
 
