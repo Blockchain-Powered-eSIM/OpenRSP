@@ -4,7 +4,7 @@
 
 The eUICC Identifier (EID) is an unique global serial number for eUICCs. The EID is not related to services and subscriptions. Initially the format for EID was inherited from the Integrated Circuit Card Identifier (ICCID) format where certain fields of the ICCID were embedded in the EID structure.
 
-The ICCID is defined by ITU-T E.118 as a Primary Account Number (PAN) and within ICCID there is an Issuer Identifier Number (IIN). However, the EID is not a PAN, as it is not meant for charging services. National authorities issue IINs/ICCIDs under various rules, leading to challenges for manufacturers, including difficulties in obtaining EIDs in certain cases.
+The ICCID is defined by [ITU-T E.118](https://www.itu.int/rec/T-REC-E.118-200605-I/en) as a Primary Account Number (PAN) and within ICCID there is an Issuer Identifier Number (IIN). However, the EID is not a PAN, as it is not meant for charging services. National authorities issue IINs/ICCIDs under various rules, leading to challenges for manufacturers, including difficulties in obtaining EIDs in certain cases.
 
 ## eUICC Numbering System
 
@@ -85,3 +85,13 @@ may be cancelled by the EIN Assignment Authority. The process for this as define
 Completed cancellation forms are sent to [EISRegistration@gsma.com](mailto:EISRegistration@gsma.com)
 3. Verification Process
 4. GSMA Confirmation
+
+## References
+
+- [Abbreviations](./References/Abbreviations.md)
+- [Definitions](./References/Definitions.md)
+- [EID Principles](./References/Principles.md)
+- [EID Requirements](./References/Requirements.md)
+- [ITU-T E.118](https://www.itu.int/rec/T-REC-E.118-200605-I/en)
+- [ISO/IEC 7812-1](https://www.iso.org/standard/70484.html)
+- [GSMA SGP.29 - EID Definition](https://www.gsma.com/solutions-and-impact/technologies/esim/wp-content/uploads/2024/03/SGP.29-v1.1.pdf)
