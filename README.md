@@ -108,6 +108,46 @@ All parties either implementing or operating systems based on these specificatio
 - OEM
 - Operator
 
+### eUICC Identifier (EID)
+
+The eUICC Identifier (EID) is a globally unique serial number assigned to eUICCs, distinct from service-related identifiers like subscriptions. Initially, its format was derived from the Integrated Circuit Card Identifier (ICCID), with specific fields from the ICCID embedded within the EID structure. Unlike the ICCID, which is defined as a Primary Account Number (PAN) for services (as per [ITU-T E.118](https://www.itu.int/rec/T-REC-E.118-200605-I/en)), the EID is not intended for charging purposes. The assignment of IINs/ICCIDs varies by country, leading to challenges for manufacturers, including obtaining EIDs in some cases.
+
+#### Structure of EID
+
+An EID is a 32-digit identifier made up of three main components:
+![EID Structure](./assets/images/EID_Structure.png "EID Structure")  
+EID Structure
+
+##### EUM Identity Number (EIN)
+- The EIN is composed of one or more concatenated EID Range Holder Identifiers (ERHIx), with the final ERHI assigned to an EUM.
+- ERHIs are allocated by an EIN Assignment Authority (EAA), which can assign them to an EUM or another EAA.
+- ERHIs vary in length and are assigned in a manner that ensures their uniqueness. The EAA determines how many digits the ERHI will contain.
+- **Example**: If ERHI 11 is assigned to entity A, numbers starting with 110 to 119 are no longer available, but 120 to 129 can be allocated to other entities.
+- The GSMA acts as the first-level EAA and assigns ERHI1s to EUMs, National Authorities, Device Manufacturers, or Groups of Device Manufacturers.
+
+##### EUM Specific Identification Number (ESIN)
+- The ESIN makes up the remaining digits of the EID (30 minus the length of the EIN) and is assigned by the EUM.
+- The EUM ensures that each ESIN it assigns is unique.
+
+##### Check Digits
+- Two check digits are calculated by the EUM for the full 32-digit EID. These check digits are derived by calculating the modulo 97 of the EID and subtracting the result from 98.
+- If the result is only one digit, a zero is prefixed to make two digits.
+
+EIDs can be verified by performing a modulo 97 operation. If the result is 1, the EID is valid.
+
+#### ERHI Assignment and Examples
+
+The ERHI assignment process involves several steps:
+- The GSMA assigns ERHI1 to an EAA, which can then assign ERHI2 values to Device Manufacturers. These manufacturers may assign ERHI3 to EUMs.
+- Alternatively, GSMA may assign ERHI1 directly to Device Manufacturers, who then assign ERHI2 to EUMs.
+- In cases where ERHI1 is assigned to a Group of Device Manufacturers, they can distribute ERHI2 values to individual manufacturers, who then assign ERHI3 to EUMs.
+
+#### Example ERHI Assignments
+
+- **Example 1**: The GSMA assigns ERHI1 to an EAA. The EAA assigns ERHI2 values to Device Manufacturers, who assign ERHI3 to EUMs.
+- **Example 2**: The GSMA assigns ERHI1 directly to a Device Manufacturer, who assigns ERHI2 values to EUMs.
+- **Example 3**: The GSMA assigns ERHI1 to a Group of Device Manufacturers, who assign ERHI2 values to individual manufacturers, and these manufacturers assign ERHI3 to EUMs.
+
 # Open Source Remote SIM Provisioning (OpenRSP)
 ## Abstract  
 
@@ -152,7 +192,7 @@ A central registry will record the proofs on-chain and these proofs might be use
 
 ### More Privacy(Different setup)
 
-It includes modern authentication for eSIMs, ensuring their validity and enabling users to prove ownership of eSIM profiles to network providers without compromising their private credentials. One key aspect of our approach is the utilization of the eUICC unique identifier (EID) to create a Secure Identifier (SSID/ZKID/DID). The EID is inherently unique and tied to the device's hardware, serving as a robust form of two-factor security. By combining this hardware-backed identifier with “*something you know*" (e.g., user credentials) and "*something you are*" (e.g., biometric data), we can enhance privacy-focused encryption and authentication for outsourced data and industry-wide collaboration. Thinking about OpenRSP incorporating the secure identifier, an advanced framework that leverages state-of-the-art cryptographic techniques to address these challenges.
+It includes modern authentication for eSIMs, ensuring their validity and enabling users to prove ownership of eSIM profiles to network providers without compromising their private credentials. One key aspect of our approach is the utilization of the eUICC unique identifier ([EID](./eUICC/EID/README.md)) to create a Secure Identifier (SSID/ZKID/DID). The EID is inherently unique and tied to the device's hardware, serving as a robust form of two-factor security. By combining this hardware-backed identifier with “*something you know*" (e.g., user credentials) and "*something you are*" (e.g., biometric data), we can enhance privacy-focused encryption and authentication for outsourced data and industry-wide collaboration. Thinking about OpenRSP incorporating the secure identifier, an advanced framework that leverages state-of-the-art cryptographic techniques to address these challenges.
 
 OpenRSP can incorporate two key innovations, Identity-Based Non-Interactive Key Exchange (IBNIKE) for Secure Identifier (SSID/ZKID) generation and Multi-Party Oblivious Transfers (MPOT) using Garbled Circuits for secure interactions within the RSP ecosystem. IBNIKE enables the generation of unique, privacy-preserving identifiers for end users without compromising their personal data. MPOT ensures secure collaboration between multiple entities involved in eSIM provisioning, safeguarding user privacy and system integrity.
 
