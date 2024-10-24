@@ -217,7 +217,7 @@ If this PE is provided, it shall be present in the context of the creation of a 
 21. PE-PINCodes  
 PIN codes shall be created in context of their scope. Global PINs (Application PINs as per [ETSI TS 102 221](https://www.etsi.org/deliver/etsi_ts/102200_102299/102221/18.02.00_60/ts_102221v180200p.pdf)) and Local PINs shall be provided once in PIN Context of creation of MF of UICC and DF/ADF respectively. The "PIN Context" is fixed by the first ADF/DF created by the previous PE which contains an ADF/DF using PE-Template or PEGeneric File Management.
 `PE-PINCode` and `pinStatusTemplateDO` usage adheres to the following rules
-    1. Every Global PINs referenced by a `pinStatusTemplateDo` shall be defined in the PIN Context of the MF
+    1. Every Global PIN referenced by a `pinStatusTemplateDo` shall be defined in the PIN Context of the MF
     2. All Local PINs referenced by a `pinStatusTemplateDo` shall be either defined in a parent ADF/DF or created in a subsequent `PE-PINCodes`
     3. If the usage rules are not satisfied, the eUICC shall abort Profile processing and return the error code `pin-code-missing`
 22. PE-PUKCodes  
@@ -233,4 +233,100 @@ May be provided in any position after Profile Header, exact restrictions vary on
 27. PE-End  
 Shall be provided once at the end of Profile Package
 28. PE-EAP  
-Use of this PE is optional. If used, it shall come after creation of the ADF which supports EAP.
+Use of this PE is optional. If used, it shall come after creation of the ADF which supports EAP. When a Profile contains an application that implements one or more EAP clients, the content of the EFDIR provided by the Profile Creator shall comply with the requirement defined in [ETSI TS 102 310](https://www.etsi.org/deliver/etsi_ts/102300_102399/102310/09.01.00_60/ts_102310v090100p.pdf)
+
+## Profile Header
+
+### Profile Header Definition
+
+The Profile Header PE is used to give an overview of contents of Profile to executing eUICC. Profile Header is used only once and at the beginning of the Profile.
+
+```
+-- ASN1START
+ProfileHeader ::= SEQUENCE {
+major-version UInt8, -- set to 3 for this version of the specification
+minor-version UInt8, -- set to 3 for this version of the specification
+profileType UTF8String (SIZE (1..100)) OPTIONAL, -- Profile type
+iccid OCTET STRING (SIZE (10)), -- ICCID of the Profile
+pol OCTET STRING OPTIONAL,
+eUICC-Mandatory-services ServicesList,
+eUICC-Mandatory-GFSTEList SEQUENCE OF OBJECT IDENTIFIER,
+connectivityParameters OCTET STRING OPTIONAL,
+eUICC-Mandatory-AIDs SEQUENCE OF SEQUENCE {
+aid ApplicationIdentifier,
+version OCTET STRING (SIZE(2))
+} OPTIONAL,
+iotOptions IotOptions OPTIONAL -- details for IoT Minimal Profile, mandatory
+for IoT Minimal Profiles
+}
+IotOptions ::= SEQUENCE {
+pix OCTET STRING (SIZE (7..11)) -- PIX value to be used for IoT Minimal
+Profiles
+}
+-- ASN1STOP
+```
+
+When the eUICC receives the Profile header, it must verify the `major-version`. If the version indicated in the Profile is not supported by the eUICC, the eUICC will return an `unsupported-profile-version` error and halt the Profile processing. The `minor-version` is informative, but it may indicate the Profile contains elements that the eUICC cannot process if it supports an older version of the specification. In such cases, these elements will be ignored unless they are marked as mandatory in the PE header.
+
+The `profileType` is an optional free-text field that may indicate details such as the Profile issuer’s name and the type of Profile.
+
+The `iccid` contains the Profile’s ICCID. For Full Profiles, the eUICC does not check the consistency of this value with ${EF_{ICCID}}$, and it is not used in this version of the specification. For IoT Minimal Profiles, the eUICC will use this value as the default content for ${EF_{ICCID}}$. It should be encoded in a non-swapped ITU E.118 format and padded with ‘F’ if fewer digits are used.
+
+The `pol` field contains the policy rules within the Profile (e.g., the POL1 value as defined by GSMA in [SGP.02](https://www.gsma.com/solutions-and-impact/technologies/esim/wp-content/uploads/2020/07/SGP.02-v4.2.pdf)). If this field is not provided in the Profile Package, a GSMA-compliant eUICC will set its value to all zeros. Profiles designed for other types of eUICCs should omit this element, and the eUICC will ignore its value.
+
+The `ServicesList` indicates the services that the eUICC must support to install the Profile. If a service listed in this sequence is not supported or recognised by the eUICC, the Profile Package installation will be aborted.
+
+```
+-- ASN1START
+ServicesList ::= SEQUENCE {
+/* Contactless */
+	contactless NULL OPTIONAL,
+/* NAAs */
+	usim NULL OPTIONAL,
+	isim NULL OPTIONAL,
+	csim NULL OPTIONAL,
+/* NAA algorithms */
+	milenage NULL OPTIONAL,
+	tuak128 NULL OPTIONAL,
+	cave NULL OPTIONAL,
+/* USIM/ISIM services */
+	gba-usim NULL OPTIONAL,
+	gba-isim NULL OPTIONAL,
+	mbms NULL OPTIONAL,
+/* EAP service */
+	eap NULL OPTIONAL,
+/* Application Runtime environment */
+	javacard NULL OPTIONAL,
+	multos NULL OPTIONAL,
+/* NAAs */
+	multiple-usim NULL OPTIONAL,
+	multiple-isim NULL OPTIONAL,
+	multiple-csim NULL OPTIONAL,
+/* Additional algorithms */
+	tuak256 NULL OPTIONAL,
+	usim-test-algorithm NULL OPTIONAL,
+/* File type */
+	ber-tlv NULL OPTIONAL,
+/* Linked files */
+	dfLink NULL OPTIONAL,
+/* Support of CAT_TP */
+	cat-tp NULL OPTIONAL,
+/* Support of 5G */
+	get-identity NULL OPTIONAL,
+	profile-a-x25519 NULL OPTIONAL,
+	profile-b-p256 NULL OPTIONAL,
+	suciCalculatorApi NULL OPTIONAL,
+/* Support of DNS Resolution */
+	dns-resolution NULL OPTIONAL,
+/* Support of GP Amd F SCP11 */
+	scp11ac NULL OPTIONAL,
+	scp11c-authorization-mechanism NULL OPTIONAL,
+/* Support of S16 mode as defined in GP Amd D and Amd F */
+	s16mode NULL OPTIONAL,
+/* Support of enhanced AKA algorithm defined in 3GPP */
+	eaka NULL OPTIONAL
+}
+-- ASN1STOP
+```
+
+The following table describes the feature support an eUICC needs in order to provide the associated service.
