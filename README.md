@@ -59,6 +59,10 @@ _The problem with current RSP lies in trust, security, transparency, and automat
 
 4. **Unnecessary TLS Encapulation**: The security of RSP depends unnecessarily on it being encapsulated in a TLS tunnel, Interfaces within RSP over TLS are prone to passive adversaries.
 
+5. **Privacy within the Protocol**: 
+
+6. **No User Plane Data Integrity**:
+
 ### The main ssue with current [RSP](https://en.wikipedia.org/wiki/Remote_SIM_provisioning)
 >
 >The current RSP standard that remotely provision eSIM to user devie is based on a mechanism which revolves around exchanging keys and signing certificates between the device and the mobile network operator (MNO). These keys and certificates are used to verify the authenticity of the device and establish a secure and encrypted connection.
@@ -67,12 +71,15 @@ _The problem with current RSP lies in trust, security, transparency, and automat
 >>
 
 ### Resolved Issue
-*With the [open source eSIM Smart Wallet](https://github.com/Blockchain-Powered-eSIM/smart-contract-suite) we have resolved the issue that gets introduced in the eSIM stack based on current RSP which is*
 >
->The right of independent service providers to transmit commands of loading profiles to SIM-cards in the device has been amended and the possibility to store arrays of profiles in independent certified data centres (Subscriptions manager) has appeared.
->
+>Independent service providers to transmit commands of loading profiles to SIM-cards in the device has been amended and the possibility to store arrays of profiles in Independent certified data centres (Subscriptions manager) has appeared.
 
-#### Where eSIM Smart Wallet allows users to own their profiles and remove the requirements to store profiles in data centres.
+#### eSIM Smart COntract Suite
+With the [open source eSIM Smart Wallet](https://github.com/Blockchain-Powered-eSIM/smart-contract-suite) we have resolved the issue that gets introduced in the eSIM stack based on current RSP by removiing the possibility to store arrays of profiles in Independent certified data centres (Subscriptions manager), 
+Actually , 
+- eSIM Smart Wallet allows users to own their profiles and remove the requirements to store profiles in data centres,
+- Provides well synchronization, security, and interoperability in subscription management which certified data centers are having issues with and it's tricky to keep everything secure, synced, and working smoothly.
+
 ---
 
 # RSP Architecture:
@@ -154,7 +161,7 @@ The ERHI assignment process involves several steps:
 >To maintain user/consumer/everyone's data privacy, integrity, authencticity and security openRSP leverage modern cryptography and communication prootocols and with Smart Contracts it introduces ownership which hasn't been really looked into the telco industry on the cosumer side.
 >With modern tech, secure-by-design and open source principle , OpenRSP delivers a trustless system in telecom industry which allows consumers to do more than just communicate.
 
-## Abstract
+# Abstract
 
 OpenRSP, an Open Source Remote SIM Provisioning protocol, represents a new era in mobile connectivity, addressing the limitations of traditional systems while ensuring robust security, privacy, and user ownership. As the world becomes increasingly connected through telecom and data networks, the reliance on secure communication protocols is paramount. Cryptography plays a vital role in solving fundamental issues related to privacy, security, integrity, and authenticity, which form the foundation of modern digital infrastructure. As a protocol, RSP is continuosly evolvolving and it'll be the same until consumers have full ownership. Current RSP standards are dependent on central authority for trust, where device manufacturers and mobile network operators (MNOs) control the provisioning of eSIM profiles and by-design the ownership of consumer eSIM profile is held by Operators. Security is derived by exchange of keys and certificates between devices and MNOs, leading to a restricted and closed environment that lacks transparency and user empowerment. Authentications within the server reveals sensitive information and complexity can be improved by improving the design.
 OpenRSP leverages modern cryptographic protocols and integrates smart contract technology to introduce a trustless system, removing reliance on traditional trusted parties. By decentralizing the control over eSIM profiles and allowing consumers to own and manage their profiles independently, OpenRSP empowers users in ways previously unexplored in the telecom industry. This innovative approach not only enhances security but also promotes greater transparency and consumer rights.
@@ -174,14 +181,12 @@ of-course you need to define what it means not to reveal anything else.
 
 **These question leads to the birth of first Zero Knowledge Proof(by a different name).**
 
-### Using ZKP in RSP
+### Modern Cryptography in RSP,
 
-1. Certificate Authentication without Revealing the Certificate Contents
-2. ZKP for EID Privacy (_if this is only the motive and system entity's aren't dependent, then just hiding EID using another primitive would be better choice, perhaps_)
-3. ZK SM-DP+ Authentication
+1. ZKCX : Certificate Authentication without Revealing the Certificate Contents and ZKProofs for Revocation Checking
+2. XX (ZKP for EID Privacy) (_if this is only the motive and system entity's aren't dependent, then just hiding EID using another primitive will be better choice_) **OT**
+3. XX (ZK SM-DP+ Authentication) (_the sm-dp+ server have all the sensitive information at the end of mutual auth, the data being stored keeps adding on throughout auth, even if you hide half of the data stored, you still have everything much to identify end user) **Tackle with 2PC LPA <-> SM-DP+ and SM-DP+ <-> eUICC**
 4. ZK Secure TLS Communication
-6. ZK Chain of Trust Validation
-6. ZKProofs for Revocation Checking
 
 ## Directions for advancements in privacy of RSP as a protocol
 
@@ -194,7 +199,7 @@ The solution aims to remove the trust from the GSMA CI to the ZKP Verifier (whic
 A central registry will record the proofs on-chain and these proofs might be used to prove the authenticity of an existing certificate (until a certain time perios) without having the need to generate a new proof for every interaction happening between the same set of entities in a given span of time.  
 > The idea is still under development and there might be significant changes in future.
 
-### More Privacy, no certificates (vague)
+### More Privacy, no certificates
 
 It includes modern authentication for eSIMs, ensuring their validity and enabling users to prove ownership of eSIM profiles to network providers without compromising their private credentials. One key aspect of our approach is the utilization of the eUICC unique identifier ([EID](./eUICC/EID/README.md)) to create a Secure Identifier (SSID/ZKID/DID). The EID is inherently unique and tied to the device's hardware, serving as a robust form of two-factor security. By combining this hardware-backed identifier with “*something you know*" (e.g., user credentials) and "*something you are*" (e.g., biometric data), we can enhance privacy-focused encryption and authentication for outsourced data and industry-wide collaboration. Thinking about OpenRSP incorporating the secure identifier, an advanced framework that leverages state-of-the-art cryptographic techniques to address these challenges.
 
