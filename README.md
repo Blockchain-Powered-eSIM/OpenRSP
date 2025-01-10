@@ -46,6 +46,7 @@ It begins with a Root Certificate Authority (Root CA), which is inherently trust
 The Root CA issues and signs certificates for Intermediate Certificate Authorities (Intermediate CAs), which in turn issue certificates to End-Entities (Leaf Certificates), such as websites or users.  
 To establish trust, each certificate in the chain must be verified by the certificate above it, with the process starting from the end-entity’s certificate and moving up to the intermediate and root certificates. If any part of this chain is invalid, revoked, or tampered with, the entire chain is considered untrusted, which compromises the security of the system. Read more about Chain of Trust [here](./CI/Readme.md)
 
+---
 
 ## Problem
 _The problem with current RSP lies in trust, security, transparency, and automation in the process of remote SIM provisioning (RSP), which could potentially be solved using smart contracts and modern cryptography._
@@ -59,11 +60,13 @@ _The problem with current RSP lies in trust, security, transparency, and automat
 
 4. **Unnecessary TLS Encapulation**: The security of RSP depends unnecessarily on it being encapsulated in a TLS tunnel, Interfaces within RSP over TLS are prone to passive adversaries.
 
-5. **Privacy within the Protocol**: 
+5. **Privacy within the Protocol**: The RSP protocol lacks robust privacy measures to safeguard interactions between entities. Sensitive information, such as unique identifiers, is frequently shared during provisioning and profile switching. This exposure increases the risk of data leaks and unauthorized tracking, as adversaries can correlate interactions to identify users and their network preferences.
 
-6. **No User Plane Data Integrity**:
+6. **No User Plane Data Integrity**: The current RSP protocol fails to ensure the integrity of user plane data, leaving it vulnerable to tampering or unauthorized modification. This issue is critical as compromised user plane data can lead to security risks, such as data corruption, injection attacks, or unauthorized access to network resources.
 
-### The main ssue with current [RSP](https://en.wikipedia.org/wiki/Remote_SIM_provisioning)
+---
+
+### The main issue with current [RSP](https://en.wikipedia.org/wiki/Remote_SIM_provisioning)
 >
 >The current RSP standard that remotely provision eSIM to user devie is based on a mechanism which revolves around exchanging keys and signing certificates between the device and the mobile network operator (MNO). These keys and certificates are used to verify the authenticity of the device and establish a secure and encrypted connection.
 >And the security relies on trusted parties (central authority), The device manufacturers here play a crucial role along with OS to make sure not reveal eSIM profile.
