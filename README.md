@@ -11,7 +11,7 @@
 <img width="937" alt="Screenshot 2024-10-14 at 9 10 32 PM" src="https://github.com/user-attachments/assets/b8b69571-2d4e-4e80-850a-b5e867434349">
 
 ### Structure
-The SIM is now structured into "**domains**" that separate the operator profile from the security and application "**domains**".  
+eSIMs adopt a domain-based architecture to separate functionalities and enhance security. This approach divides the SIM's roles into distinct domains, primarily the **Operator Profile Domain** and the **Security Domain**, each serving specific purposes.
 
 **The concept of "domains" is a structural approach to segregate the functionalities and responsibilities within the SIM.**
 
@@ -20,72 +20,58 @@ In eUICC  and eSIM (embedded Subscriber Identity Module) technology, domains are
 > Unlike traditional SIM cards, eSIMs can be integrated into a System-on-Chip (SoC) or used as upgradable components via APIs like the Android 9 eSIM APIs. GSMA certification mandates that sensitive personalization data—such as Ki, OPc, and 5G keys—be securely processed within the eSIM hardware, eliminating the risk of data extraction. A critical feature of eSIMs is enterprise ownership, granting full control over security configurations, applications, and the selection of operator profiles.  
 
 ## Domains in eSIM
-#### 1. Operator Profile Domain
-- This domain holds the traditional functionalities of a SIM, primarily related to network access. It contains information such as:
-  - **International Mobile Subscriber Identity (IMSI)**: The unique identifier for the subscriber on the mobile network.
-  - **Authentication Keys**: Used to authenticate the subscriber on the network and establish a secure connection.
-  - **Network-Specific Configurations**: Settings required by the Mobile Network Operator (MNO), such as preferred access technologies and roaming rules.
-- The **operator profile domain** is controlled and managed by the MNO. This domain ensures that the eSIM can establish and maintain connectivity with the mobile network.
-
-#### 2. Security Domain
-- The **security domain** is a dedicated area within the eSIM that manages sensitive cryptographic operations. This domain is responsible for:
-  - **eKYC (Electronic Know Your Customer)**: Ensures compliance with regulations like GDPR, AML, and AFT by verifying the identity of the subscriber.
-  - **Secure Key Storage**: Safeguards cryptographic keys, protecting them from unauthorized access.
-  - **Over-The-Air (OTA)(embedded Universal Integrated Circuit Card) Updates**: Enables the secure provisioning of new keys, certificates, or updates to the eSIM.
-  - **Secure Element**: A hardware-based security module that manages cryptographic operations, isolated from other domains to prevent unauthorized access.
-
 #### 1. Subscription Management Domain
 The **subscription management domain** handles the provisioning, management and deletion of Operator Profiles on eUICC-enabled devices. There are two components in this domain:
-- a. SM-DP (Subscription Manager - Data Preparation)
- - Typically managed by the MNOs (Mobile Network Providers).
- - Generates and encrypts eSIM profiles.
- - Preapares profiles for provisioning and send encrypted profiles to the SM-SR for delivery to target eUICC.
+- **a)** SM-DP (Subscription Manager - Data Preparation)
+    - Typically managed by the MNOs (Mobile Network Providers).
+    - Generates and encrypts eSIM profiles.
+    - Preapares profiles for provisioning and send encrypted profiles to the SM-SR for delivery to target eUICC.
 
-- b. SM-SR (Subscription Manager - Secure Routing)
- - Managed by a trusted thrid-party or MNO.
- - Acts as a conrtrol plane for SM-DP and eUICC interactions.
- - Responsible for securely routing the encrypted profile from SM-DP to eUICC.
+- **b)** SM-SR (Subscription Manager - Secure Routing)
+    - Managed by a trusted thrid-party or MNO.
+    - Acts as a conrtrol plane for SM-DP and eUICC interactions.
+    - Responsible for securely routing the encrypted profile from SM-DP to eUICC.
 
 #### 2. eUICC Domain
 The **eUICC domain** provides a secure, tamper-resistant hardware platform for hosting multiple operator profiles. This domain consists of following sub-domains:
-- a. Profile Domain
- - Respresents individual operator profiles stored on eUICC.
- - Contains credentials and settings necessary for network authentication.
- - Multiple profiles can exist on an eUICC but the number of active profiles depends on device capabailities.
-- b. Platform Domain
- - Manages overall eUICC system functionalities.
- - Provides scurity features and enforces policies for profile management.
- - Facilitates communication between the eUICC, device, and subscription management systems.
+- **a)** Profile Domain
+    - Respresents individual operator profiles stored on eUICC.
+    - Contains credentials and settings necessary for network authentication.
+    - Multiple profiles can exist on an eUICC but the number of active profiles depends on device capabailities.
+- **b)** Platform Domain
+    - Manages overall eUICC system functionalities.
+    - Provides scurity features and enforces policies for profile management.
+    - Facilitates communication between the eUICC, device, and subscription management systems.
 
 #### 3. Device Domain
 The **device domain** domain is responsible for interactions between eUICC and the device hosting it. This domain consists of following sub-domains:
-- a. Host Device Domain
- - Represents the hardware device (e.g., smartphone, tablet, IoT device) containing the eUICC.
- - Communicates with the eUICC for operations such as profile activation, deactivation, or switching.
- - Runs the mobile OS or applications interacting with the eUICC.
-- b. User Interface Domain
- - Provides a user-friendly interface for managing eSIM profiles (e.g., selecting a profile to activate or deleting a profile).
- - Accessible via the settings or a dedicated application.
- - Encapsulates functionalities of LPA (Local Profile Assistant)
+- **a)** Host Device Domain
+    - Represents the hardware device (e.g., smartphone, tablet, IoT device) containing the eUICC.
+    - Communicates with the eUICC for operations such as profile activation, deactivation, or switching.
+    - Runs the mobile OS or applications interacting with the eUICC.
+- **b)** User Interface Domain
+    - Provides a user-friendly interface for managing eSIM profiles (e.g., selecting a profile to activate or deleting a profile).
+    - Accessible via the settings or a dedicated application.
+    - Encapsulates functionalities of LPA (Local Profile Assistant)
 
 #### 4. Connectivity Domains
 The **connectivity domain** encompasses the interfaces and protocols used for connectivity and communication. It consists of fololowing sub-domains:
-- a. Over-The-Air (OTA) Domain
- - Includes mobile network infrastructure used for profile activation and connectivity.
- - Uses secure protocols (e.g., GSMA’s RSP standard) to communicate between the SM-SR and eUICC.
- - Enables the secure provisioning of new keys, certificates, or updates to the eSIM.
-- b. Communication Network Domain
- - Includes mobile network infrastructure used for profile activation and connectivity.
- - Ensures the eSIM profile works with the corresponding MNO.
+- **a)** Over-The-Air (OTA) Domain
+    - Includes mobile network infrastructure used for profile activation and connectivity.
+    - Uses secure protocols (e.g., GSMA’s RSP standard) to communicate between the SM-SR and eUICC.
+    - Enables the secure provisioning of new keys, certificates, or updates to the eSIM.
+- **b)** Communication Network Domain
+    - Includes mobile network infrastructure used for profile activation and connectivity.
+    - Ensures the eSIM profile works with the corresponding MNO.
 
 #### 5. Security Domain
 The **security domain** is dedicated to manage sensitive cryptographic operations. It is fundamental in eUICC and eSIM protocol to protect data and ensure trustworthiness. It has the following sub-domains:
-- a. Secure Element (SE) Domain
- - The hardware-based tamper-resistant element hosting the eUICC.
- - Protects credentials, cryptographic keys, and profiles from unauthorized access.
-- b. Cryptographic Domain
- - Enforces security protocols and encryption for profile delivery, installation, and communication.
- - Uses Public Key Infrastructure (PKI) and other cryptographic methods for authentication and data integrity.
+- **a)** Secure Element (SE) Domain
+    - The hardware-based tamper-resistant element hosting the eUICC.
+    - Protects credentials, cryptographic keys, and profiles from unauthorized access.
+- **b)** Cryptographic Domain
+    - Enforces security protocols and encryption for profile delivery, installation, and communication.
+    - Uses Public Key Infrastructure (PKI) and other cryptographic methods for authentication and data integrity.
 
 This domain-based architecture adds a layer of abstraction and security, allowing eSIMs to serve it purpose ensuring compliance with security and regulatory requirements.
 
