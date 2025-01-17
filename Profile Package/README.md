@@ -239,7 +239,8 @@ Use of this PE is optional. If used, it shall come after creation of the ADF whi
 
 ### Profile Header Definition
 
-The Profile Header PE is used to give an overview of contents of Profile to executing eUICC. Profile Header is used only once and at the beginning of the Profile.
+The Profile Header PE is used to give an overview of contents of Profile to executing eUICC.
+> **Profile Header is used only once and at the beginning of the Profile.**
 
 ```
 -- ASN1START
