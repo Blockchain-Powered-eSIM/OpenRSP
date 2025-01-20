@@ -11,7 +11,7 @@
 <img width="937" alt="Screenshot 2024-10-14 at 9 10 32 PM" src="https://github.com/user-attachments/assets/b8b69571-2d4e-4e80-850a-b5e867434349">
 
 ### Structure
-eSIMs adopt a domain-based architecture to separate functionalities and enhance security. This approach divides the SIM's roles into distinct domains each, serving specific purposes.
+eSIMs adopt a domain-based architecture to separate functionalities and enhance security. This approach divides the SIM's roles into distinct domains, each serving specific purposes.
 
 **The concept of "domains" is a structural approach to segregate the functionalities and responsibilities within the SIM.**
 
