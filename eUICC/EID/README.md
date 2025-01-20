@@ -91,7 +91,7 @@ The eUICC Identifier (EID) is a globally unique serial number assigned to eUICCs
 #### Structure of EID
 
 An EID is a 32-digit identifier made up of three main components:
-![EID Structure](./assets/images/EID_Structure.png "EID Structure")  
+![EID Structure](./../../assets/images/EID_Structure.png "EID Structure")  
 EID Structure
 
 ##### EUM Identity Number (EIN)
