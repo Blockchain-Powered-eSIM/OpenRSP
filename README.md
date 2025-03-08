@@ -8,11 +8,11 @@
 
 ---
 ## Persona and Interactions for RSP
-- **Consumer** : Sends intent by selecting a telco/data plan from an array or list of plans provided by _**MNO**(Mobile Network Operator)_.
-- **MNO** : Orders _**SM-DP+**(Subscription Manager Data Preparation)_ to create an eSIM profile of the selected telco/data plan and delivers it to respective user device.
-- **SM-DP+** : A server-side platform that manages eSIM profiles, prepares eSIM profiles with carrier information and credentials, enables communication between the device and the carrier network via _**LPA**(Local Profile Assistant)_ and securely stores and delivers eSIM profiles to devices.
-- **LPA** : A system application, a software component within eSIM-enabled devices that manages eSIM profiles, interacts with the _**eUICC**(embedded Universal Integrated Circuit Card) chip_ within the device to store and manage eSIM profile, enabling seamless downloading, installation, and management of mobile network profiles without needing physical SIM cards.
-- **eUICC Chip** : Simply put, it's a SIM card component that lets you switch mobile network operators (MNOs) remotely.
+1. **Consumer** : Sends intent by selecting a telco/data plan from an array or list of plans provided by _**MNO**(Mobile Network Operator)_.
+2. **MNO** : Orders _**SM-DP+**(Subscription Manager Data Preparation)_ to create an eSIM profile of the selected telco/data plan and delivers it to respective user device.
+3. **SM-DP+** : A server-side platform that manages eSIM profiles, prepares eSIM profiles with carrier information and credentials, enables communication between the device and the carrier network via _**LPA**(Local Profile Assistant)_ and securely stores and delivers eSIM profiles to devices.
+4. **LPA** : A system application, a software component within eSIM-enabled devices that manages eSIM profiles, interacts with the _**eUICC**(embedded Universal Integrated Circuit Card) chip_ within the device to store and manage eSIM profile, enabling seamless downloading, installation, and management of mobile network profiles without needing physical SIM cards.
+5. **eUICC Chip** : Simply put, it's a SIM card component that lets you switch mobile network operators (MNOs) remotely.
 <img width="937" alt="Screenshot 2024-10-14 at 9 10 32 PM" src="https://github.com/user-attachments/assets/b8b69571-2d4e-4e80-850a-b5e867434349">
 
 # eSIM 
@@ -135,6 +135,11 @@ All parties either implementing or operating systems based on these specificatio
 
 ## Problem
 _The problem with current RSP lies in trust, security, transparency, and automation in the process of remote SIM provisioning (RSP), which could potentially be solved using smart contracts and modern cryptography._
+>
+>The current [RSP](https://en.wikipedia.org/wiki/Remote_SIM_provisioning) standard that remotely provision eSIM to user devie is based on a mechanism which revolves around exchanging keys and signing certificates between the device and the mobile network operator (MNO). These keys and certificates are used to verify the authenticity of the device and establish a secure and encrypted connection.
+>And the security relies on trusted parties (central authority), The device manufacturers here play a crucial role along with OS to make sure not reveal eSIM profile.
+>This also makes the environment restricted and later a closed industry.
+>
 
 ### The challenges:
 1. **Trust Between Service Providers and Consumers**: Consumers must trust the remote provisioning process carried out by mobile operators or third-party service providers to be secure and private. Currently, this process requires reliance on intermediaries (like Subscription Managers) to manage SIM profiles and switch between mobile operators. This raises concerns about data security, privacy, and the handling of SIM profiles.
@@ -148,25 +153,6 @@ _The problem with current RSP lies in trust, security, transparency, and automat
 5. **Privacy within the Protocol**: The RSP protocol lacks robust privacy measures to safeguard interactions between entities. Sensitive information, such as unique identifiers, is frequently shared during provisioning and profile switching. This exposure increases the risk of data leaks and unauthorized tracking, as adversaries can correlate interactions to identify users and their network preferences.
 
 6. **No User Plane Data Integrity**: The current RSP protocol fails to ensure the integrity of user plane data, leaving it vulnerable to tampering or unauthorized modification. This issue is critical as compromised user plane data can lead to security risks, such as data corruption, injection attacks, or unauthorized access to network resources.
-
----
-
-### The main issue with current [RSP](https://en.wikipedia.org/wiki/Remote_SIM_provisioning)
->
->The current RSP standard that remotely provision eSIM to user devie is based on a mechanism which revolves around exchanging keys and signing certificates between the device and the mobile network operator (MNO). These keys and certificates are used to verify the authenticity of the device and establish a secure and encrypted connection.
->And the security relies on trusted parties (central authority), The device manufacturers here play a crucial role along with OS to make sure not reveal eSIM profile.
->This also makes the environment restricted and later a closed industry.
->>
-
-### Resolved Issue
->
->Independent service providers to transmit commands of loading profiles to SIM-cards in the device has been amended and the possibility to store arrays of profiles in Independent certified data centres (Subscriptions manager) has appeared.
-
-#### eSIM Smart COntract Suite
-With the [open source eSIM Smart Wallet](https://github.com/Blockchain-Powered-eSIM/smart-contract-suite) we have resolved the issue that gets introduced in the eSIM stack based on current RSP by removiing the possibility to store arrays of profiles in Independent certified data centres (Subscriptions manager), 
-Actually , 
-- eSIM Smart Wallet allows users to own their profiles and remove the requirements to store profiles in data centres,
-- Provides well synchronization, security, and interoperability in subscription management which certified data centers are having issues with and it's tricky to keep everything secure, synced, and working smoothly.
 
 ---
 
