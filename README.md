@@ -7,10 +7,18 @@
 >The GSM Association (commonly referred to as 'the GSMA' or Global System for Mobile Communications, originally Groupe Spécial Mobile) is a non-profit industry organisation that represents the interests of mobile network operators worldwide. More than 750 mobile operators are full GSMA members and a further 400 companies in the broader mobile ecosystem are associate members.
 
 ---
-
+## Persona and Interactions for RSP
+- **Consumer** : Sends intent by selecting a telco/data plan from an array or list of plans provided by _**MNO**(Mobile Network Operator)_.
+- **MNO** : Orders _**SM-DP+**(Subscription Manager Data Preparation)_ to create an eSIM profile of the selected telco/data plan and delivers it to respective user device.
+- **SM-DP+** : A server-side platform that manages eSIM profiles, prepares eSIM profiles with carrier information and credentials, enables communication between the device and the carrier network via _**LPA**(Local Profile Assistant)_ and securely stores and delivers eSIM profiles to devices.
+- **LPA** : A system application, a software component within eSIM-enabled devices that manages eSIM profiles, interacts with the _**eUICC**(embedded Universal Integrated Circuit Card) chip_ within the device to store and manage eSIM profile, enabling seamless downloading, installation, and management of mobile network profiles without needing physical SIM cards.
+- **eUICC Chip** : Simply put, it's a SIM card component that lets you switch mobile network operators (MNOs) remotely.
 <img width="937" alt="Screenshot 2024-10-14 at 9 10 32 PM" src="https://github.com/user-attachments/assets/b8b69571-2d4e-4e80-850a-b5e867434349">
 
-### Structure
+> [!NOTE]
+> This _technology_ combines the eUICC chip(hardware) and SM-DP+(software), defines the rules as a _protocol_ for communication between multiple entities, user, MNO, SM-DP+, LPA & eUICC and finally as a _system_, integrates these elements to **achieve secure remote SIM provisioning**.
+
+## Structure
 eSIMs adopt a domain-based architecture to separate functionalities and enhance security. This approach divides the SIM's roles into distinct domains, each serving specific purposes.
 
 **The concept of "domains" is a structural approach to segregate the functionalities and responsibilities within the SIM.**
