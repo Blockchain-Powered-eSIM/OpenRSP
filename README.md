@@ -15,8 +15,8 @@
 - **eUICC Chip** : Simply put, it's a SIM card component that lets you switch mobile network operators (MNOs) remotely.
 <img width="937" alt="Screenshot 2024-10-14 at 9 10 32 PM" src="https://github.com/user-attachments/assets/b8b69571-2d4e-4e80-850a-b5e867434349">
 
-> [!NOTE]
-> This _technology_ combines the eUICC chip(hardware) and SM-DP+(software), defines the rules as a _protocol_ for communication between multiple entities, user, MNO, SM-DP+, LPA & eUICC and finally as a _system_, integrates these elements to **achieve secure remote SIM provisioning**.
+# eSIM 
+The eSIM _technology_ combines the eUICC chip(hardware) and SM-DP+(software), defines the rules as a _protocol_ for communication between multiple entities, user, MNO, SM-DP+, LPA & eUICC and finally as a _system_, integrates these elements to **achieve secure remote SIM provisioning**.
 
 ## Structure
 eSIMs adopt a domain-based architecture to separate functionalities and enhance security. This approach divides the SIM's roles into distinct domains, each serving specific purposes.
@@ -83,8 +83,9 @@ The **security domain** is dedicated to manage sensitive cryptographic operation
 
 This domain-based architecture adds a layer of abstraction and security, allowing eSIMs to serve it purpose ensuring compliance with security and regulatory requirements.
 
-### Operations
+### eSIM Installation
 <img width="911" alt="Screenshot 2024-10-09 at 4 33 40 PM" src="https://github.com/user-attachments/assets/837164db-3ade-431b-a16f-53724a9b87b0">
+---
 
 ### X.509 Certificates and Chain of Trust
 The Chain of Trust in X.509 certificates is a hierarchical structure used to verify the authenticity of digital certificates.  
