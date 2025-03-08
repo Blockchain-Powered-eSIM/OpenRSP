@@ -16,7 +16,12 @@
 <img width="937" alt="Screenshot 2024-10-14 at 9 10 32 PM" src="https://github.com/user-attachments/assets/b8b69571-2d4e-4e80-850a-b5e867434349">
 
 # eSIM 
-The eSIM _technology_ combines the eUICC chip(hardware) and SM-DP+(software), defines the rules as a _protocol_ for communication between multiple entities, user, MNO, SM-DP+, LPA & eUICC and finally as a _system_, integrates these elements to **achieve secure remote SIM provisioning**.
+The eSIM _technology_ combines the eUICC chip(hardware) and SM-DP+(software),  
+defines the rules as a _protocol_ for communication between multiple entities, user, MNO, SM-DP+, LPA & eUICC and  
+finally as a _system_, integrates these elements to **achieve secure remote SIM provisioning**. 
+>
+>📰 **Half a billion** eSIM-capable devices were shipped in 2023, **Over 9 billion** to be shipped by 2030, **Nearly 70%** proportion cellular devices eSIM capable by 2030.
+>
 
 ## Structure
 eSIMs adopt a domain-based architecture to separate functionalities and enhance security. This approach divides the SIM's roles into distinct domains, each serving specific purposes.
@@ -95,6 +100,39 @@ To establish trust, each certificate in the chain must be verified by the certif
 
 ---
 
+# RSP Architecture:
+> [!NOTE]
+> All the acquired knowledge and new RnD is started from [RSP Architecture SGP.21 V3.1](https://www.gsma.com/solutions-and-impact/technologies/esim/wp-content/uploads/2023/12/SGP.21-V3.1.pdf) with focus on consumer RSP.
+
+The Remote SIM Provisioning Architecture, with multiple entities interacting with reach other via secure routes and rules called Interfaces 
+![RSP-Architecture](https://github.com/user-attachments/assets/30bb39db-5c26-4c9c-b46e-1a01452525bf)
+
+### Major Componenets:
+
+- Certificate Issuer(CI)
+- Operator
+- Mobile Service Provider
+- SM-DP+ (Data Preparation)
+- SM-DS (Discovery Service)
+- LPA (Device App)
+- eUICC (embedded chip)
+
+### Principles
+
+All parties either implementing or operating systems based on these specifications should be aware that any data items passed between system elements that can be used to identify an individual can be classified as personal data (as defined in the General Data Protection Regulation (EU) 2016/679). Responsibility for the management of Personal Data and compliance with any necessary legislation lies with implementing and operating organisations, according to each organisation’s respective legal status with respect to the data processes (i.e. whether the entity acts as a data controller or as a data processor).
+
+### High Level Authorized Parties
+>The requirement of GSMA certification is that personalisation packet is decoded inside the chip and so there is **no way to dump Ki, OPc and 5G keys.**
+>Another important aspect is that the **eSIM is owned by the enterprise**, and this means that the enterprise now has full control of the security and applications in the eSIM, and which operators profiles are to be used.
+
+- root GSMA CI
+- sub CI
+- EUM
+- OEM
+- Operator
+
+---
+
 ## Problem
 _The problem with current RSP lies in trust, security, transparency, and automation in the process of remote SIM provisioning (RSP), which could potentially be solved using smart contracts and modern cryptography._
 
@@ -129,38 +167,6 @@ With the [open source eSIM Smart Wallet](https://github.com/Blockchain-Powered-e
 Actually , 
 - eSIM Smart Wallet allows users to own their profiles and remove the requirements to store profiles in data centres,
 - Provides well synchronization, security, and interoperability in subscription management which certified data centers are having issues with and it's tricky to keep everything secure, synced, and working smoothly.
-
----
-
-# RSP Architecture:
-**NOTICE**: All the traditonal knowledge and new RnD is started from [RSP Architecture SGP.21 V3.1](https://www.gsma.com/solutions-and-impact/technologies/esim/wp-content/uploads/2023/12/SGP.21-V3.1.pdf). The interaction between components and inner working is represented by `ES`.
-
-The current Remote SIM Provisioning Architecture,
-![RSP-Architecture](https://github.com/user-attachments/assets/30bb39db-5c26-4c9c-b46e-1a01452525bf)
-
-### Major Componenets:
-
-- Certificate Issuer(CI)
-- Operator
-- Mobile Service Provider
-- SM-DP+ (Data Preparation)
-- SM-DS (Discovery Service)
-- LPA (Device App)
-- eUICC (embedded chip)
-
-### Principles
-
-All parties either implementing or operating systems based on these specifications should be aware that any data items passed between system elements that can be used to identify an individual can be classified as personal data (as defined in the General Data Protection Regulation (EU) 2016/679). Responsibility for the management of Personal Data and compliance with any necessary legislation lies with implementing and operating organisations, according to each organisation’s respective legal status with respect to the data processes (i.e. whether the entity acts as a data controller or as a data processor).
-
-### High Level Authorized Parties
->The requirement of GSMA certification is that personalisation packet is decoded inside the chip and so there is **no way to dump Ki, OPc and 5G keys.**
->Another important aspect is that the **eSIM is owned by the enterprise**, and this means that the enterprise now has full control of the security and applications in the eSIM, and which operators profiles are to be used.
-
-- root GSMA CI
-- sub CI
-- EUM
-- OEM
-- Operator
 
 ---
 
