@@ -126,6 +126,7 @@ To establish trust, each certificate in the chain must be verified by the certif
 # RSP Architecture:
 > [!NOTE]
 > All the acquired knowledge and new RnD is started from [RSP Architecture SGP.21 V3.1](https://www.gsma.com/solutions-and-impact/technologies/esim/wp-content/uploads/2023/12/SGP.21-V3.1.pdf) with focus on consumer RSP.
+> Refer to this [document](https://guyphy.notion.site/Supplementary-Reading-1299492854b480c78b66f080a823bb4b) for detailed Consumer eSIM Profile Info.
 
 The Remote SIM Provisioning Architecture, The interaction between components and inner working is represented by ES modules.
 ![RSP-Architecture](https://github.com/user-attachments/assets/30bb39db-5c26-4c9c-b46e-1a01452525bf)
@@ -190,9 +191,10 @@ _The problem with RSP lies in trust, security, transparency, and automation in t
 >The [RSP](https://en.wikipedia.org/wiki/Remote_SIM_provisioning) standard that remotely provision eSIM to user devie is based on a mechanism which revolves around exchanging keys and signing certificates between the device and the mobile network operator (MNO). These keys and certificates are used to verify the authenticity of the device and establish a secure and encrypted connection.
 >And the security relies on trusted parties (central authority), The device manufacturers here play a crucial role along with OS to make sure not reveal eSIM profile.
 >This also makes the environment restricted and later a closed industry.
->
 
-### The challenges:
+### ❗ [eSIM Problem Summary](https://github.com/Blockchain-Powered-eSIM/Kokio-docs/wiki/Problems-With-eSIMs)
+
+## Challenges:
 1. **Trust Between Service Providers and Consumers**: Consumers must trust the remote provisioning process carried out by mobile operators or third-party service providers to be secure and private. Currently, this process requires reliance on intermediaries (like Subscription Managers) to manage SIM profiles and switch between mobile operators. This raises concerns about data security, privacy, and the handling of SIM profiles.
 
 2. **Complexity in Profile Management**: Managing multiple profiles, especially when different service providers are involved, can be cumbersome. The current system involves centralized entities, making it prone to inefficiencies or even misuse of consumer data.
