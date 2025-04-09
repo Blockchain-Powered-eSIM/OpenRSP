@@ -205,7 +205,7 @@ _The problem with RSP lies in trust, security, transparency, and automation in t
 
 6. **No User Plane Data Integrity**: The current RSP protocol fails to ensure the integrity of user plane data, leaving it vulnerable to tampering or unauthorized modification. This issue is critical as compromised user plane data can lead to security risks, such as data corruption, injection attacks, or unauthorized access to network resources.
 
-##### ❗ Here's a [summary of RSP failures]([url](https://github.com/orgs/Blockchain-Powered-eSIM/discussions/1#discussioncomment-12732458)) with respective assumptions.
+### ❗ [RSP Failure Summary](https://github.com/orgs/Blockchain-Powered-eSIM/discussions/1#discussioncomment-12732458)
 
 ---
 
