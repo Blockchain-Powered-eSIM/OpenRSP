@@ -126,6 +126,7 @@ To establish trust, each certificate in the chain must be verified by the certif
 # RSP Architecture:
 > [!NOTE]
 > All the acquired knowledge and new RnD is started from [RSP Architecture SGP.21 V3.1](https://www.gsma.com/solutions-and-impact/technologies/esim/wp-content/uploads/2023/12/SGP.21-V3.1.pdf) with focus on consumer RSP.
+> 
 > Refer to this [document](https://guyphy.notion.site/Supplementary-Reading-1299492854b480c78b66f080a823bb4b) for detailed Consumer eSIM Profile Info.
 
 The Remote SIM Provisioning Architecture, The interaction between components and inner working is represented by ES modules.
