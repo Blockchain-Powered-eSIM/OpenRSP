@@ -199,11 +199,13 @@ _The problem with RSP lies in trust, security, transparency, and automation in t
 
 3. **Manual Processes and Delays**: Even though remote provisioning allows flexibility, manual intervention is still required at various stages (like authentication, profile switching, and payment settlement). This introduces potential delays and human errors.
 
-4. **Unnecessary TLS Encapulation**: The security of RSP depends unnecessarily on it being encapsulated in a TLS tunnel, Interfaces within RSP over TLS are prone to passive adversaries.
+4. **Unnecessary TLS Encapulation**: The security of RSP depends unnecessarily on it being encapsulated in a TLS tunnel, Interfaces within RSP over TLS are prone to passive adversaries. TLS isn’t just a privacy layer — it's doing core security work, which is brittle.
 
 5. **Privacy within the Protocol**: The RSP protocol lacks robust privacy measures to safeguard interactions between entities. Sensitive information, such as unique identifiers, is frequently shared during provisioning and profile switching. This exposure increases the risk of data leaks and unauthorized tracking, as adversaries can correlate interactions to identify users and their network preferences.
 
 6. **No User Plane Data Integrity**: The current RSP protocol fails to ensure the integrity of user plane data, leaving it vulnerable to tampering or unauthorized modification. This issue is critical as compromised user plane data can lead to security risks, such as data corruption, injection attacks, or unauthorized access to network resources.
+
+##### ❗ Here's a [summary of RSP failures]([url](https://github.com/orgs/Blockchain-Powered-eSIM/discussions/1#discussioncomment-12732458)) with respective assumptions.
 
 ---
 
@@ -253,10 +255,11 @@ of-course you need to define what it means not to reveal anything else.
 
 ### Zero Knowledge Proofs in RSP,
 
-1. ZKCX : Certificate Authentication without Revealing the Certificate Contents and ZKProofs for Revocation Checking
-2. XX (ZKP for EID Privacy) (_if this is only the motive and system entity's aren't dependent, then just hiding EID using another primitive will be better choice_) **OT**
-3. XX (ZK SM-DP+ Authentication) (_the sm-dp+ server have all the sensitive information at the end of mutual auth, the data being stored keeps adding on throughout auth, even if you hide half of the data stored, you still have everything much to identify end user) **Tackle with 2PC LPA <-> SM-DP+ and SM-DP+ <-> eUICC**
-4. ZK Secure TLS Communication
+1. **zkCX** _(Zero Knowledge Certificate Exchange)_ : Certificate Authentication without Revealing the Certificate Contents and ZKProofs for Revocation Checking
+2. **XX (ZKP for EID Privacy)** (_if this is only the motive and system entity's aren't dependent, then just hiding EID using another primitive will be better choice_) **OT**
+3. **XX (ZK SM-DP+ Authentication)** (_the sm-dp+ server have all the sensitive information at the end of mutual auth, the data being stored keeps adding on throughout auth, even if you hide half of the data stored, you still have everything much to identify end user) **Tackle with 2PC LPA <-> SM-DP+ and SM-DP+ <-> eUICC**
+4. **ZK Secure TLS Communication** : TLS Tunnel Dependency, eSIM Profile activation-code approach is critically dependent on TLS to protect the activation code. TLS should remain only as a privacy layer (e.g., to hide identifiers from network observers).
+
 
 ## Directions for advancements in privacy of RSP as a protocol
 
